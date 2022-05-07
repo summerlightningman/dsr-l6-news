@@ -2,7 +2,7 @@ import {FC} from 'react';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {QueryClient, QueryClientProvider} from "react-query";
 
-import SignInPage from "../sign-in-page/sign-in-page";
+import AuthPage from "../auth-page/auth-page";
 import NewsPage from "../news-page/news-page";
 import Endpoint from "../../endpoint";
 import GlobalStyle from "../styled/global";
@@ -18,7 +18,7 @@ const App: FC = () => {
             <BrowserRouter>
                 <Routes>
                     <Route path={Endpoint.NEWS_PAGE} element={<NewsPage/>}/>
-                    <Route path={Endpoint.SIGN_IN} element={<SignInPage/>}/>
+                    <Route path={Endpoint.SIGN_IN} element={<AuthPage/>}/>
                 </Routes>
             </BrowserRouter>
         </QueryClientProvider>

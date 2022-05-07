@@ -21,7 +21,7 @@ const SignInForm: FC = () => {
         if (cookies.token)
             navigate(Endpoint.NEWS_PAGE)
     }, [cookies.token, navigate]);
-    
+
     const initialVales: FormFields = {login: '', password: ''};
     const validate = (values: FormFields) => {
         const errors: Partial<FormFields> = {};
@@ -41,8 +41,7 @@ const SignInForm: FC = () => {
                 setCookies('token', token, {maxAge: 3600 * 24});
                 return navigate(Endpoint.NEWS_PAGE);
             })
-            .catch((reason) => {
-                console.log(reason)
+            .catch(() => {
                 setErrors({login: 'Login and/or password are incorrect'})
             })
             .finally(() => {
@@ -58,21 +57,23 @@ const SignInForm: FC = () => {
                   touched,
                   handleChange,
                   handleBlur,
-                  handleSubmit
+                  handleSubmit,
+                  isSubmitting
               }) =>
                 <SignInFormStyled onSubmit={handleSubmit}>
                     <FormHeader>SIGN IN</FormHeader>
                     <FormGroup>
                         <FormInput type="text" name="login" value={values.login} onChange={handleChange}
                                    onBlur={handleBlur} placeholder="Login"/>
-                        {errors.login && touched.login && <FormErrMsg>{errors.login}</FormErrMsg>}</FormGroup>
+                        {errors.login && touched.login && <FormErrMsg>{errors.login}</FormErrMsg>}
+                    </FormGroup>
                     <FormGroup>
                         <FormInput type="password" name="password" value={values.password} onChange={handleChange}
                                    onBlur={handleBlur} placeholder="Password"/>
-                        {errors.password && touched.password && <FormErrMsg>{errors.password}</FormErrMsg>}</FormGroup>
-                    <SubmitButton type="submit">Sign in</SubmitButton>
+                        {errors.password && touched.password && <FormErrMsg>{errors.password}</FormErrMsg>}
+                    </FormGroup>
+                    <SubmitButton type="submit" disabled={isSubmitting}>Sign in</SubmitButton>
                 </SignInFormStyled>
-
             }
         </Formik>
     </SignInFormContainer>

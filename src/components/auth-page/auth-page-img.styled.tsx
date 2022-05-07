@@ -2,7 +2,7 @@ import styled from 'styled-components';
 // @ts-ignore
 import img from "../../assets/news-login-img.jpg";
 
-const SignInImg = styled.div`
+const AuthPageImgStyled = styled.div`
   background-image: url(${img});
   height: 100vh;
   width: 50%;
@@ -12,4 +12,4 @@ const SignInImg = styled.div`
   z-index: -1;
 `;
 
-export default SignInImg
+export default AuthPageImgStyled
