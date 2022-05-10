@@ -46,4 +46,5 @@ export const getUserInfo = async (token: string): Promise<UserInfo> => fetch(BAC
         Accept: 'application/json',
         token
     }
-}).then(response => response.json()).then(user => user.me as UserInfo)
+}).then(response => response.json()).then(user => user.me as UserInfo);
+
