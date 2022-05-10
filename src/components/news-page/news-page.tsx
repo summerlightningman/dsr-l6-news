@@ -12,7 +12,7 @@ import {UserInfo} from "./news-page.types";
 const NewsPage: FC = () => {
     const navigate = useNavigate();
     const [{token}] = useCookies(['token']);
-    const [user, setUser] = useState<UserInfo>(defaultUser)
+    const [user, setUser] = useState<UserInfo>(defaultUser);
     useEffect(() => {
         getUserInfo(token).then(setUser);
     }, [token]);
@@ -21,8 +21,6 @@ const NewsPage: FC = () => {
         if (!token)
             navigate(Endpoint.AUTH);
     }, [token, navigate]);
-
-    console.log(user);
 
     return <NewsPageStyled>
         <NewsBody>
