@@ -1,18 +1,18 @@
-import {FC, useEffect} from 'react';
+import {FC} from 'react';
 import NewsNavbarItem from "./news-navbar-item";
 import NewsNavbar from "./news-navbar.styled";
-import {useNavigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import UserInfo from "../user-info/user-info";
 import NavbarEndpoint from "./navbar-endpoint";
 
 const NewsNavbarAdmin: FC = () => {
     const {section} = useParams();
-    const navigate = useNavigate();
 
-    useEffect(() => {
-        if (!section)
-            navigate(NavbarEndpoint.ALL);
-    }, [section, navigate]);
+
+    // useEffect(() => {
+    //     if (!section)
+    //         navigate(NavbarEndpoint.ALL, {replace: false});
+    // }, [section, navigate]);
 
     return <NewsNavbar>
         <NewsNavbarItem to={'/' + NavbarEndpoint.SUBSCRIBED}

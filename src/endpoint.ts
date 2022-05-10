@@ -1,7 +1,9 @@
 enum Endpoint {
-    SIGN_IN = '/sign-in',
-    SIGN_UP = '/sign-up',
-    NEWS_PAGE = '/',
+    SIGN_IN = 'sign-in',
+    SIGN_UP = 'sign-up',
+    AUTH = '/auth',
+    ROOT = '/',
+
     NOT_FOUND = '*'
 }
 
