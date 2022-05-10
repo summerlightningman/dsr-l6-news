@@ -12,7 +12,7 @@ const SignOutBtn: FC = () => {
     const handleClick: MouseEventHandler<HTMLButtonElement> = () => signOut(token).then(resp => {
         if (resp.ok)
             removeCookie('token');
-        navigate(Endpoint.SIGN_IN);
+        return navigate(Endpoint.AUTH);
     });
 
     return <SignOutBtnStyled onClick={handleClick}>

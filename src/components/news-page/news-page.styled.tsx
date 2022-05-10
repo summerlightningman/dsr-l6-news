@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 // @ts-ignore
-import img from './../../assets/news-blurred.png';
+import img from '../../assets/news-blured.png';
 
 const NewsPageStyled = styled.main`
   width: 100vw;
