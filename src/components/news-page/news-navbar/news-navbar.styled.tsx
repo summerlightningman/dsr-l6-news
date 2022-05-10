@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import UserInfoStyled from "../user-info/user-info.styled";
 
 
-const NewsNavbar = styled.nav`
+const NewsNavbarStyled = styled.nav`
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -14,4 +14,4 @@ const NewsNavbar = styled.nav`
   }
 `;
 
-export default NewsNavbar
+export default NewsNavbarStyled

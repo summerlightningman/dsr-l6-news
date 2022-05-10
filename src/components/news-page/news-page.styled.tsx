@@ -12,10 +12,15 @@ const NewsPageStyled = styled.main`
   object-fit: contain;
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
-  
+
   display: flex;
   flex-direction: row;
   justify-content: center;
+
+  .active {
+    background-color: #FFD5AB;
+    color: #FE295D;
+  }
 `;
 
 export default NewsPageStyled
