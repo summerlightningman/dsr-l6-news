@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import {NavLink} from "react-router-dom";
+import {darkOrange, lightOrange} from "../../styled/constants";
 
-const NewsNavbarItem = styled(NavLink)`
+const NewsNavbarItemStyled = styled(NavLink)`
 
-  background-color: #F37731;
-  color: #FFD5AB;
+  background-color: ${darkOrange};
+  color: ${lightOrange};
 
   width: 160px;
   height: 50px;
@@ -24,4 +25,4 @@ const NewsNavbarItem = styled(NavLink)`
   border-radius: 25px 25px 0 0;
 `;
 
-export default NewsNavbarItem
+export default NewsNavbarItemStyled

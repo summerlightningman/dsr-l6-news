@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import {lightPink} from "../../styled/constants";
 
 const NewsPublicationStatus = styled.span`
   font-family: 'Inter', sans-serif;
@@ -11,7 +12,7 @@ const NewsPublicationStatus = styled.span`
   align-items: center;
   text-align: right;
 
-  color: #FF6AAA;
+  color: ${lightPink};
 `;
 
 export default NewsPublicationStatus

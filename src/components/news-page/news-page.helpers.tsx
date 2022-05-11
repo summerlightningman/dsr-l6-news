@@ -1,6 +1,6 @@
 import React from "react";
 import {Role, UserInfo} from "./news-page.types";
-import NewsNavbarItem from "./news-navbar/news-navbar-item";
+import NewsNavbarItemStyled from "./news-navbar/news-navbar-item.styled";
 import NavbarEndpoint from "./news-navbar/navbar-endpoint";
 
 export const defaultUser: UserInfo = {
@@ -15,24 +15,33 @@ export const getNavbarByRole = (role: Role): JSX.Element => {
     switch (role) {
         case Role.WRITER:
             return <>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.SUBSCRIBED} draggable={false}>My subs</NewsNavbarItem>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.ALL} draggable={false}>All</NewsNavbarItem>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.TAG_LIST} draggable={false}>Tag list</NewsNavbarItem>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.NEW_POST} draggable={false}>New post</NewsNavbarItem>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.SUBSCRIBED} draggable={false}>My
+                    subs</NewsNavbarItemStyled>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.ALL} draggable={false}>All</NewsNavbarItemStyled>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.TAG_LIST} draggable={false}>Tag
+                    list</NewsNavbarItemStyled>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.NEW_POST} draggable={false}>New
+                    post</NewsNavbarItemStyled>
             </>
         case Role.ADMIN:
             return <>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.SUBSCRIBED} draggable={false}>My subs</NewsNavbarItem>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.ALL} draggable={false}>All</NewsNavbarItem>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.TAG_LIST} draggable={false}>Tag list</NewsNavbarItem>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.USER_LIST} draggable={false}>User list</NewsNavbarItem>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.NEW_POST} draggable={false}>New post</NewsNavbarItem>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.SUBSCRIBED} draggable={false}>My
+                    subs</NewsNavbarItemStyled>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.ALL} draggable={false}>All</NewsNavbarItemStyled>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.TAG_LIST} draggable={false}>Tag
+                    list</NewsNavbarItemStyled>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.USER_LIST} draggable={false}>User
+                    list</NewsNavbarItemStyled>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.NEW_POST} draggable={false}>New
+                    post</NewsNavbarItemStyled>
             </>
         default:
             return <>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.SUBSCRIBED} draggable={false}>My subs</NewsNavbarItem>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.ALL} draggable={false}>All</NewsNavbarItem>
-                <NewsNavbarItem to={'/' + NavbarEndpoint.TAG_LIST} draggable={false}>Tag list</NewsNavbarItem>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.SUBSCRIBED} draggable={false}>My
+                    subs</NewsNavbarItemStyled>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.ALL} draggable={false}>All</NewsNavbarItemStyled>
+                <NewsNavbarItemStyled to={'/' + NavbarEndpoint.TAG_LIST} draggable={false}>Tag
+                    list</NewsNavbarItemStyled>
             </>
     }
 };

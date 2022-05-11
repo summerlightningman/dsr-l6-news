@@ -4,6 +4,7 @@ import NewsDescription from "./news-description.styled";
 import NewsReadStatus from "./news-read-status.styled";
 import NewsTagList from "./news-tag-list.styled";
 import NewsPublicationStatus from "./news-publication-status.styled";
+import {darkPink} from "../../styled/constants";
 
 const NewsListItemStyled = styled.div`
   width: 100%;
@@ -12,7 +13,7 @@ const NewsListItemStyled = styled.div`
   display: grid;
   grid-template-rows: 60px auto 45px;
   grid-template-columns: 7fr 1fr;
-  border-bottom: 1px solid #FE295D;
+  border-bottom: 1px solid ${darkPink};
 
   ${NewsTitle} {
     grid-row: 1;
