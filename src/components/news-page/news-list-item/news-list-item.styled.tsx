@@ -40,6 +40,7 @@ const NewsListItemStyled = styled.div`
     grid-row: 3;
     grid-column: 2;
     justify-self: end;
+    align-self: end;
   }
 `;
 
