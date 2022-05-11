@@ -7,8 +7,8 @@ import NewsPublicationStatus from "./news-publication-status.styled";
 
 const NewsListItemStyled = styled.div`
   width: 100%;
-  height: 250px;
-  padding: 5px 15px 21px 30px;
+
+  padding: 5px 15px 10px 30px;
   display: grid;
   grid-template-rows: 60px auto 45px;
   grid-template-columns: 7fr 1fr;

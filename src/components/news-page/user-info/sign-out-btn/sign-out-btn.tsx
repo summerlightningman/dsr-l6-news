@@ -9,9 +9,8 @@ const SignOutBtn: FC = () => {
     const [{token}, , removeCookie] = useCookies(['token']);
     const navigate = useNavigate();
 
-    const handleClick: MouseEventHandler<HTMLButtonElement> = () => signOut(token).then(resp => {
-        if (resp.ok)
-            removeCookie('token');
+    const handleClick: MouseEventHandler<HTMLButtonElement> = () => signOut(token).then(() => {
+        removeCookie('token');
         return navigate(Endpoint.AUTH);
     });
 
