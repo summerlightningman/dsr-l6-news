@@ -12,6 +12,8 @@ const NewsPageStyled = styled.main`
   object-fit: contain;
   backdrop-filter: blur(50px);
   -webkit-backdrop-filter: blur(50px);
+  background-repeat: no-repeat;
+  background-size: cover;
 
   display: flex;
   flex-direction: row;
