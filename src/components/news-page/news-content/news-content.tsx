@@ -1,18 +1,25 @@
-import {FC, useState} from 'react';
+import {FC, useContext, useState} from 'react';
 import {useQuery} from 'react-query';
 import NewsContentStyled from "./news-content.styled";
 import NewsListItem from "../news-list-item/news-list-item";
 import NewsPaginator from "./news-paginator/news-paginator";
-import {getAllNews} from "../../../http";
+import {getAllNews, QueryParameters} from "../../../http";
 import {useCookies} from "react-cookie";
 import {NewsPost} from "../news-page.types";
 import {NewsContentProps} from "./news-content.types";
+import {UserContext} from '../news-page.helpers';
 
 const NewsContent: FC<NewsContentProps> = ({filterByTag}) => {
     const [{token}] = useCookies(['token']);
+    const user = useContext(UserContext)
     const [offset, setOffset] = useState(0);
     const limit = 5;
-    const {data, isLoading, isSuccess} = useQuery('news', () => getAllNews(token, offset, limit));
+    const queryParams: QueryParameters = {
+        limit,
+        offset,
+        tags: filterByTag ? user.tags.join(',') : undefined
+    }
+    const {data, isLoading, isSuccess} = useQuery('news', () => getAllNews(token, queryParams));
 
     const onPrevPageClick = () => setOffset(offset - limit);
     const onNextPageClick = () => setOffset(offset + limit);
@@ -20,6 +27,7 @@ const NewsContent: FC<NewsContentProps> = ({filterByTag}) => {
     if (isSuccess) {
         return <NewsContentStyled>
             {
+                // @ts-ignore
                 data.news.list.map(
                     (post: NewsPost) =>
                         <NewsListItem

@@ -24,7 +24,7 @@ root.render(
                 <Route path={Endpoint.ROOT} element={<App/>}>
                     <Route path={Endpoint.ROOT} element={<NewsPage/>}>
                         <Route path={NavbarEndpoint.ALL} element={<NewsContent/>}/>
-                        <Route path={NavbarEndpoint.SUBSCRIBED} element={<NewsContent/>}/>
+                        <Route path={NavbarEndpoint.SUBSCRIBED} element={<NewsContent filterByTag={true}/>}/>
                         <Route path={NavbarEndpoint.TAG_LIST} element={<NewsContent/>}/>
                         <Route path={NavbarEndpoint.USER_LIST} element={<NewsContent/>}/>
                         <Route path={NavbarEndpoint.NEW_POST} element={<NewsContent/>}/>
