@@ -14,6 +14,11 @@ const PaginatorButton = styled.button`
   :hover {
     cursor: pointer;
   }
+
+  :disabled {
+    color: #828282;
+    border-bottom-color: #828282;
+  }
 `;
 
 export default PaginatorButton

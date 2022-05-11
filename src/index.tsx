@@ -1,7 +1,9 @@
 import {createRoot} from "react-dom/client";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {QueryClient, QueryClientProvider} from 'react-query';
+
 import App from "./components/app/app";
 import GlobalStyle from "./components/styled/global";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Endpoint from "./endpoint";
 import NewsPage from "./components/news-page/news-page";
 import AuthPage from "./components/auth-page/auth-page";
@@ -11,9 +13,11 @@ import NotFound from "./components/not-found/not-found";
 import NavbarEndpoint from "./components/news-page/news-navbar/navbar-endpoint";
 import NewsContent from "./components/news-page/news-content/news-content";
 
+const queryClient = new QueryClient();
+
 const root = createRoot(document.querySelector('#root') as HTMLElement);
 root.render(
-    <>
+    <QueryClientProvider client={queryClient}>
         <GlobalStyle/>
         <BrowserRouter>
             <Routes>
@@ -33,5 +37,5 @@ root.render(
                 <Route path={Endpoint.NOT_FOUND} element={<NotFound/>}/>
             </Routes>
         </BrowserRouter>
-    </>
+    </QueryClientProvider>
 )

@@ -1,11 +1,13 @@
-import {UserInfo} from "./components/news-page/news-page.types";
+import {Tag, UserInfo} from "./components/news-page/news-page.types";
 import {Login, Password} from "./components/auth-page/auth-page.types";
 
 enum ApiEndpoint {
     LOGIN = 'auth/login',
     SIGN_UP = 'auth/signup',
     LOGOUT = 'auth/logout',
-    USER_INFO = 'user/me'
+    USER_INFO = 'user/me',
+    ALL_NEWS = 'news/all',
+    NEWS = 'news'
 }
 
 const BACKEND_URL = 'http://localhost:3000/';
@@ -47,4 +49,22 @@ export const getUserInfo = async (token: string): Promise<UserInfo> => fetch(BAC
         token
     }
 }).then(response => response.json()).then(user => user.me as UserInfo);
+
+interface RequestParameters {
+    offset: number,
+    limit: number,
+    tags?: Tag[]
+}
+
+export const getAllNews = async (token: string, params: RequestParameters) => {
+    const queryParameters = Object.entries(params).reduce((acc, [key, val]) => val ? `${acc}&${key}=${val}` : acc, '?').replace('?&', '?');
+    fetch(BACKEND_URL + ApiEndpoint.NEWS + queryParameters, {
+        method: 'GET',
+        headers: {
+            ...corsHeaders,
+            Accept: 'application/json',
+            token
+        }
+    }).then(response => response.json());
+}
 
