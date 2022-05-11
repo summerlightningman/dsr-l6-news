@@ -12,7 +12,6 @@ const NewsListItemStyled = styled.div`
   display: grid;
   grid-template-rows: 60px auto 45px;
   grid-template-columns: 7fr 1fr;
-  border-top: 1px solid #FE295D;
   border-bottom: 1px solid #FE295D;
 
   ${NewsTitle} {
@@ -23,11 +22,12 @@ const NewsListItemStyled = styled.div`
   ${NewsReadStatus} {
     grid-row: 1;
     grid-column: 2;
+    justify-self: end;
   }
 
   ${NewsDescription} {
     grid-row: 2;
-    grid-column: 1;
+    grid-column: 1 / 3;
   }
 
   ${NewsTagList} {
@@ -38,6 +38,7 @@ const NewsListItemStyled = styled.div`
   ${NewsPublicationStatus} {
     grid-row: 3;
     grid-column: 2;
+    justify-self: end;
   }
 `;
 
