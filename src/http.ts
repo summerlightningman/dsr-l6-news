@@ -2,6 +2,7 @@ import {UserInfo} from "./components/news-page/news-page.types";
 import {Login, Password} from "./components/auth-page/auth-page.types";
 import {ResponseData} from "./components/news-page/news-content/news-content.types";
 
+
 enum ApiEndpoint {
     LOGIN = 'auth/login',
     SIGN_UP = 'auth/signup',
@@ -72,4 +73,15 @@ export const getAllNews = async (token: string, params: QueryParameters): Promis
 
 export const getTagList = async () => fetch(BACKEND_URL + ApiEndpoint.TAG_LIST)
     .then(response => response.json());
+
+export const setUserData = async (token: string, newUserInfo: UserInfo) =>
+    fetch(BACKEND_URL + ApiEndpoint.USER_INFO, {
+        method: 'POST',
+        body: JSON.stringify(newUserInfo),
+        headers: {
+            ...corsHeaders,
+            Accept: 'application/json',
+            token
+        }
+    }).then(response => response.json());
 
