@@ -12,6 +12,7 @@ import SignUpForm from "./components/auth-page/sign-up-form/sign-up-form";
 import NotFound from "./components/not-found/not-found";
 import NavbarEndpoint from "./components/news-page/news-navbar/navbar-endpoint";
 import NewsContent from "./components/news-page/news-content/news-content";
+import TagList from "./components/news-page/tag-list/tag-list";
 
 const queryClient = new QueryClient();
 
@@ -25,7 +26,7 @@ root.render(
                     <Route path={Endpoint.ROOT} element={<NewsPage/>}>
                         <Route path={NavbarEndpoint.ALL} element={<NewsContent/>}/>
                         <Route path={NavbarEndpoint.SUBSCRIBED} element={<NewsContent filterByTag={true}/>}/>
-                        <Route path={NavbarEndpoint.TAG_LIST} element={<NewsContent/>}/>
+                        <Route path={NavbarEndpoint.TAG_LIST} element={<TagList/>}/>
                         <Route path={NavbarEndpoint.USER_LIST} element={<NewsContent/>}/>
                         <Route path={NavbarEndpoint.NEW_POST} element={<NewsContent/>}/>
                     </Route>

@@ -8,7 +8,8 @@ enum ApiEndpoint {
     LOGOUT = 'auth/logout',
     USER_INFO = 'user/me',
     ALL_NEWS = 'news/all',
-    NEWS = 'news'
+    NEWS = 'news',
+    TAG_LIST = 'news/tags'
 }
 
 const BACKEND_URL = 'http://localhost:3000/';
@@ -67,5 +68,8 @@ export const getAllNews = async (token: string, params: QueryParameters): Promis
             token
         }
     }).then(response => response.json());
-}
+};
+
+export const getTagList = async () => fetch(BACKEND_URL + ApiEndpoint.TAG_LIST)
+    .then(response => response.json());
 
