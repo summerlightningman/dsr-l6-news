@@ -1,49 +1,40 @@
-import {FC} from 'react';
-import {useQuery} from 'react-query';
+import {FC, useEffect} from 'react';
 import NewsContentStyled from "./news-content.styled";
 import NewsListItem from "../news-list-item/news-list-item";
 import NewsPaginator from "./news-paginator/news-paginator";
-import {getAllNews, QueryParameters} from "../../../http";
 import {useCookies} from "react-cookie";
 import {NewsPost} from "../news-page.types";
 import {NewsContentProps} from "./news-content.types";
-import {useAppSelector} from "../../../redux/hooks";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import fetchNewsList from "../../../redux/slices/news/fetch-news-list.thunk";
 
 
 const NewsContent: FC<NewsContentProps> = ({filterByTag}) => {
+    const dispatch = useAppDispatch();
     const [{token}] = useCookies(['token']);
-    const [{tags}, {offset, limit}] = useAppSelector(state => [state.user, state.news]);
+    const [{tags}, {list, offset, limit}] = useAppSelector(state => [state.user, state.news]);
 
+    useEffect(() => {
+        const tagList = filterByTag ? tags.join(',') : undefined;
+        dispatch(fetchNewsList({token, limit, offset, tags: tagList}));
+    }, [dispatch, filterByTag, limit, offset, tags, token]);
 
-    const queryParams: QueryParameters = {
-        limit,
-        offset,
-        tags: filterByTag ? tags.join(',') : undefined
-    }
-    const {data, isLoading, isSuccess} = useQuery('news', () => getAllNews(token, queryParams));
+    return <NewsContentStyled>
+        {
 
-    if (isSuccess) {
-        return <NewsContentStyled>
-            {
-                // @ts-ignore
-                data.news.list.map(
-                    (post: NewsPost) =>
-                        <NewsListItem
-                            header={post.header}
-                            description={post.description}
-                            tags={post.tags}
-                            key={post.header + post.description + post.tags}
-                        />
-                )
-            }
+            list.map(
+                (post: NewsPost) =>
+                    <NewsListItem
+                        header={post.header}
+                        description={post.description}
+                        tags={post.tags}
+                        key={post.header + post.description + post.tags}
+                    />
+            )
+        }
+        <NewsPaginator/>
+    </NewsContentStyled>
 
-            <NewsPaginator/>
-        </NewsContentStyled>
-    }
-    if (isLoading)
-        return <h1>Loading...</h1>
-    else
-        return <h1>Error :(</h1>
 };
 
 export default NewsContent;

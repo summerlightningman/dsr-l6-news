@@ -1,6 +1,7 @@
 import {NewsState} from "./news.types";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {NewsDescription, NewsHeader} from "../../../components/news-page/news-page.types";
+import {NewsDescription, NewsHeader, NewsPost} from "../../../components/news-page/news-page.types";
+import fetchNewsList from "./fetch-news-list.thunk";
 
 const initialState: NewsState = {
     list: [],
@@ -28,6 +29,11 @@ export const newsSlice = createSlice({
                 state.offset = 0;
             else
                 state.offset -= state.limit;
+        }
+    },
+    extraReducers: {
+        [fetchNewsList.fulfilled.type]: (state: NewsState, action: PayloadAction<NewsPost[]>) => {
+            state.list = action.payload;
         }
     }
 });

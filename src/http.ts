@@ -1,6 +1,5 @@
-import {Tag, UserInfo} from "./components/news-page/news-page.types";
+import {NewsPost, Tag, UserInfo} from "./components/news-page/news-page.types";
 import {Login, Password, Token} from "./components/auth-page/auth-page.types";
-import {ResponseData} from "./components/news-page/news-content/news-content.types";
 
 
 enum ApiEndpoint {
@@ -59,7 +58,7 @@ export interface QueryParameters {
     tags?: string
 }
 
-export const getAllNews = async (token: Token, params: QueryParameters): Promise<ResponseData> => {
+export const getAllNews = async (token: Token, params: QueryParameters) => {
     const queryParameters = Object.entries(params).reduce((acc, [key, val]) => val ? `${acc}&${key}=${val}` : acc, '?').replace('?&', '?');
     return fetch(BACKEND_URL + ApiEndpoint.NEWS + queryParameters, {
         method: 'GET',
@@ -68,7 +67,9 @@ export const getAllNews = async (token: Token, params: QueryParameters): Promise
             Accept: 'application/json',
             token
         }
-    }).then(response => response.json());
+    })
+        .then(response => response.json())
+        .then(data => data.news.list as NewsPost[]);
 };
 
 export const getTagList = async () => fetch(BACKEND_URL + ApiEndpoint.TAG_LIST)
