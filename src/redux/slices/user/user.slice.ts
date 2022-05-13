@@ -25,8 +25,8 @@ const userSlice = createSlice({
     extraReducers: {
         [fetchUserInfo.fulfilled.type]: (state: UserInfo, action: PayloadAction<UserInfo>) =>
             ({...action.payload}),
-        // [fetchUserInfo.pending.type]: state =>
-        //     ({...state, nickname: 'Loading...', firstName: 'Loading...', lastName: 'Loading...'})
+        [fetchUserInfo.pending.type]: state =>
+            ({...state, nickname: 'Loading...', firstName: 'Loading...', lastName: 'Loading...'})
     }
 });
 

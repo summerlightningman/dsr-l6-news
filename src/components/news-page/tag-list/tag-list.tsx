@@ -22,7 +22,6 @@ const TagList: FC = () => {
                         />
                 )
             }
-
         </NewsContentStyled>
     return <h1>No data</h1>
 };

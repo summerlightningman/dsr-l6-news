@@ -7,6 +7,7 @@ import {useCookies} from "react-cookie";
 
 const UserInfo: FC = () => {
     const [{token}] = useCookies(['token']);
+
     const {nickname} = useAppSelector(state => state.user);
     const dispatch = useAppDispatch();
 
