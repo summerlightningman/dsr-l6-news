@@ -1,4 +1,4 @@
-import {FC, useState} from 'react';
+import {FC} from 'react';
 import {useQuery} from 'react-query';
 import NewsContentStyled from "./news-content.styled";
 import NewsListItem from "../news-list-item/news-list-item";
@@ -11,20 +11,16 @@ import {useAppSelector} from "../../../redux/hooks";
 
 
 const NewsContent: FC<NewsContentProps> = ({filterByTag}) => {
-    const [offset, setOffset] = useState(0);
     const [{token}] = useCookies(['token']);
-    const {tags} = useAppSelector(state => state.user);
+    const [{tags}, {offset, limit}] = useAppSelector(state => [state.user, state.news]);
 
-    const limit = 5;
+
     const queryParams: QueryParameters = {
         limit,
         offset,
         tags: filterByTag ? tags.join(',') : undefined
     }
     const {data, isLoading, isSuccess} = useQuery('news', () => getAllNews(token, queryParams));
-
-    const onPrevPageClick = () => setOffset(offset - limit);
-    const onNextPageClick = () => setOffset(offset + limit);
 
     if (isSuccess) {
         return <NewsContentStyled>
@@ -41,12 +37,7 @@ const NewsContent: FC<NewsContentProps> = ({filterByTag}) => {
                 )
             }
 
-            <NewsPaginator
-                onPrevPageClick={onPrevPageClick}
-                onNextPageClick={onNextPageClick}
-                isPrevAvailable={offset !== 0}
-                isNextAvailable={(offset + limit) < data.news.total}
-            />
+            <NewsPaginator/>
         </NewsContentStyled>
     }
     if (isLoading)
