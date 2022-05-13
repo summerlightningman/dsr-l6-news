@@ -1,4 +1,4 @@
-import {FC, useContext, useState} from 'react';
+import {FC, useState} from 'react';
 import {useQuery} from 'react-query';
 import NewsContentStyled from "./news-content.styled";
 import NewsListItem from "../news-list-item/news-list-item";
@@ -7,17 +7,19 @@ import {getAllNews, QueryParameters} from "../../../http";
 import {useCookies} from "react-cookie";
 import {NewsPost} from "../news-page.types";
 import {NewsContentProps} from "./news-content.types";
-import {UserContext} from '../news-page.helpers';
+import {useAppSelector} from "../../../redux/hooks";
+
 
 const NewsContent: FC<NewsContentProps> = ({filterByTag}) => {
-    const [{token}] = useCookies(['token']);
-    const user = useContext(UserContext)
     const [offset, setOffset] = useState(0);
+    const [{token}] = useCookies(['token']);
+    const {tags} = useAppSelector(state => state.user);
+
     const limit = 5;
     const queryParams: QueryParameters = {
         limit,
         offset,
-        tags: filterByTag ? user.tags.join(',') : undefined
+        tags: filterByTag ? tags.join(',') : undefined
     }
     const {data, isLoading, isSuccess} = useQuery('news', () => getAllNews(token, queryParams));
 

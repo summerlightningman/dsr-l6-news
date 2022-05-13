@@ -54,5 +54,3 @@ export const getDefaultTabByRole = (role: Role): NavbarEndpoint => {
             return NavbarEndpoint.ALL
     }
 }
-
-export const UserContext = React.createContext<UserInfo>(defaultUser)
