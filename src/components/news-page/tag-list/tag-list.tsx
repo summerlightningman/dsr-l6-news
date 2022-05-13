@@ -1,18 +1,17 @@
 import {FC, useContext} from 'react';
 import {useQuery} from "react-query";
-
-import TagListStyled from "./tag-list.styled";
 import {getTagList} from "../../../http";
 import {Tag} from '../news-page.types';
 import TagListItem from "./tag-list-item/tag-list-item";
 import {UserContext} from '../news-page.helpers';
+import NewsContentStyled from "../news-content/news-content.styled";
 
 const TagList: FC = () => {
     const {data: list} = useQuery('tagList', getTagList);
     const user = useContext(UserContext);
 
     if (list)
-        return <TagListStyled>
+        return <NewsContentStyled>
             {
                 list.map(
                     (tag: Tag, idx: number) =>
@@ -24,7 +23,7 @@ const TagList: FC = () => {
                 )
             }
 
-        </TagListStyled>
+        </NewsContentStyled>
     return <h1>No data</h1>
 };
 

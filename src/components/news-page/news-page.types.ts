@@ -1,7 +1,7 @@
 import {FirstName, LastName, NickName} from "../auth-page/auth-page.types";
 
-export type Header = string;
-export type Description = string;
+export type NewsHeader = string;
+export type NewsDescription = string;
 
 export enum Role {
     READER = 'reader',
@@ -23,7 +23,7 @@ export interface NewsPost {
     authorFirstName: FirstName,
     authorLastName: LastName,
     authorNickname: NickName,
-    description: Description,
-    header: Header,
+    description: NewsDescription,
+    header: NewsHeader,
     tags: Tag[]
 }

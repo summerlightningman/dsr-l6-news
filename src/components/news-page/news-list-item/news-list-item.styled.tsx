@@ -6,7 +6,7 @@ import NewsTagList from "./news-tag-list.styled";
 import NewsPublicationStatus from "./news-publication-status.styled";
 import {darkPink} from "../../styled/constants";
 
-const NewsListItemStyled = styled.div`
+const NewsListItemStyled = styled.li`
   width: 100%;
 
   padding: 5px 15px 10px 30px;

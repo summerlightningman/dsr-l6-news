@@ -6,7 +6,7 @@ import NewsPageStyled from "./news-page.styled";
 import NewsBody from "./news-body.styled";
 
 import {getUserInfo} from "../../http";
-import {defaultUser, getDefaultTabByRole, getNavbarByRole, UserContext} from "./news-page.helpers";
+import {defaultUser, getDefaultTabByRole, getNavbarByRole} from "./news-page.helpers";
 import {UserInfo} from "./news-page.types";
 import NewsNavbar from "./news-navbar/news-navbar";
 
@@ -30,12 +30,10 @@ const NewsPage: FC = () => {
 
     return <NewsPageStyled>
         <NewsBody>
-            <UserContext.Provider value={user}>
-                <NewsNavbar defaultPath={defaultPath}>
-                    {navbar}
-                </NewsNavbar>
-                <Outlet/>
-            </UserContext.Provider>
+            <NewsNavbar defaultPath={defaultPath}>
+                {navbar}
+            </NewsNavbar>
+            <Outlet/>
         </NewsBody>
     </NewsPageStyled>
 };
