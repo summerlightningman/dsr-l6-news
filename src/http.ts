@@ -1,5 +1,5 @@
-import {UserInfo} from "./components/news-page/news-page.types";
-import {Login, Password} from "./components/auth-page/auth-page.types";
+import {Tag, UserInfo} from "./components/news-page/news-page.types";
+import {Login, Password, Token} from "./components/auth-page/auth-page.types";
 import {ResponseData} from "./components/news-page/news-content/news-content.types";
 
 
@@ -28,7 +28,7 @@ export const signIn = async (login: Login, password: Password) => fetch(BACKEND_
     }
 }).then(response => response.json());
 
-export const signOut = async (token: string) => fetch(BACKEND_URL + ApiEndpoint.LOGOUT, {
+export const signOut = async (token: Token) => fetch(BACKEND_URL + ApiEndpoint.LOGOUT, {
     method: 'POST',
     headers: {
         ...corsHeaders,
@@ -44,7 +44,7 @@ export const signUp = async (login: Login, password: Password) => fetch(BACKEND_
     }
 });
 
-export const getUserInfo = async (token: string): Promise<UserInfo> => fetch(BACKEND_URL + ApiEndpoint.USER_INFO, {
+export const getUserInfo = async (token: Token): Promise<UserInfo> => fetch(BACKEND_URL + ApiEndpoint.USER_INFO, {
     method: 'GET',
     headers: {
         ...corsHeaders,
@@ -59,7 +59,7 @@ export interface QueryParameters {
     tags?: string
 }
 
-export const getAllNews = async (token: string, params: QueryParameters): Promise<ResponseData> => {
+export const getAllNews = async (token: Token, params: QueryParameters): Promise<ResponseData> => {
     const queryParameters = Object.entries(params).reduce((acc, [key, val]) => val ? `${acc}&${key}=${val}` : acc, '?').replace('?&', '?');
     return fetch(BACKEND_URL + ApiEndpoint.NEWS + queryParameters, {
         method: 'GET',
@@ -74,7 +74,7 @@ export const getAllNews = async (token: string, params: QueryParameters): Promis
 export const getTagList = async () => fetch(BACKEND_URL + ApiEndpoint.TAG_LIST)
     .then(response => response.json());
 
-export const setUserData = async (token: string, newUserInfo: UserInfo) =>
+export const setUserData = async (token: Token, newUserInfo: UserInfo) =>
     fetch(BACKEND_URL + ApiEndpoint.USER_INFO, {
         method: 'POST',
         body: JSON.stringify(newUserInfo),
@@ -84,4 +84,11 @@ export const setUserData = async (token: string, newUserInfo: UserInfo) =>
             token
         }
     }).then(response => response.json());
+
+export const switchTagSubscription = async (token: Token, tag: Tag) =>
+    getUserInfo(token)
+        .then(user => {
+            const newTagList = user.tags.includes(tag) ? user.tags.filter(_ => _ !== tag) : [...user.tags, tag];
+            return setUserData(token, {...user, tags: newTagList})
+        });
 

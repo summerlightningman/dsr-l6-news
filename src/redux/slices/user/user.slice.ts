@@ -1,8 +1,10 @@
-import {Role, Tag, UserInfo} from '../../../components/news-page/news-page.types';
+import {Role, Tag} from '../../../components/news-page/news-page.types';
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import fetchUserInfo from "./fetchUserInfo.thunk";
+import {UserError, UserState} from "./user.types";
+import switchTagSub from "./switch-tag-subscription.thunk";
 
-const initialState: UserInfo = {
+const initialState: UserState = {
     nickname: '[unknown]',
     firstName: '[unknown]',
     tags: [],
@@ -14,21 +16,27 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUserInfo: (state: UserInfo, action: PayloadAction<UserInfo>) => ({...action.payload}),
-        addTag: (state: UserInfo, action: PayloadAction<Tag>) => {
-            state.tags = [...state.tags, action.payload]
-        },
-        removeTag: (state: UserInfo, action: PayloadAction<Tag>) => {
-            state.tags = state.tags.filter(tag => tag !== action.payload)
-        }
+
     },
     extraReducers: {
-        [fetchUserInfo.fulfilled.type]: (state: UserInfo, action: PayloadAction<UserInfo>) =>
+        [fetchUserInfo.fulfilled.type]: (state: UserState, action: PayloadAction<UserState>) =>
             ({...action.payload}),
         [fetchUserInfo.pending.type]: state =>
-            ({...state, nickname: 'Loading...', firstName: 'Loading...', lastName: 'Loading...'})
+            ({...state, nickname: 'Loading...', firstName: 'Loading...', lastName: 'Loading...'}),
+        [fetchUserInfo.rejected.type]: (state: UserState, action: PayloadAction<UserError>) => {
+            state.error = action.payload
+        },
+        [switchTagSub.fulfilled.type]: (state: UserState, action: PayloadAction<Tag>) => {
+            if (state.tags.includes(action.payload))
+                state.tags = state.tags.filter(tag => tag !== action.payload)
+            else
+                state.tags = [...state.tags, action.payload]
+        },
+        [switchTagSub.rejected.type]: (state: UserState, action: PayloadAction<UserError>) => {
+            state.error = action.payload
+        }
     }
 });
 
-export const {setUserInfo, addTag, removeTag} = userSlice.actions;
+// export const {setUserInfo, addTag, removeTag} = userSlice.actions;
 export default userSlice
