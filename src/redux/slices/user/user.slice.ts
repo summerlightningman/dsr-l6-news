@@ -1,6 +1,6 @@
 import {Role, Tag} from '../../../components/news-page/news-page.types';
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import fetchUserInfo from "./fetchUserInfo.thunk";
+import fetchUserInfo from "./fetch-user-info.thunk";
 import {UserError, UserState} from "./user.types";
 import switchTagSub from "./switch-tag-subscription.thunk";
 
@@ -34,5 +34,4 @@ const userSlice = createSlice({
     }
 });
 
-// export const {setUserInfo, addTag, removeTag} = userSlice.actions;
 export default userSlice
