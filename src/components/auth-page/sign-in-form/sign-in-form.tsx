@@ -5,7 +5,7 @@ import {FormFields} from "./sign-in-form.types";
 import {FormikHelpers} from "formik/dist/types";
 import FormContainer from "../form-container.styled";
 import FormInput from "../../styled/form-input.styled";
-import FormErrMsg from "../../styled/form-err-msg.styled";
+import FormErrorMessage from "../../styled/form-error-message";
 import FormHeader from "../../styled/form-header.styled";
 import SubmitButton from "../../styled/submit-button.styled";
 import {signIn} from "../../../http";
@@ -66,12 +66,12 @@ const SignInForm: FC = () => {
                     <FormGroup>
                         <FormInput type="text" name="login" value={values.login} onChange={handleChange}
                                    onBlur={handleBlur} placeholder="Login"/>
-                        <FormErrMsg>{errors.login && touched.login && errors.login}</FormErrMsg>
+                        <FormErrorMessage>{errors.login && touched.login && errors.login}</FormErrorMessage>
                     </FormGroup>
                     <FormGroup>
                         <FormInput type="password" name="password" value={values.password} onChange={handleChange}
                                    onBlur={handleBlur} placeholder="Password"/>
-                        <FormErrMsg>{errors.password && touched.password && errors.password}</FormErrMsg>
+                        <FormErrorMessage>{errors.password && touched.password && errors.password}</FormErrorMessage>
                     </FormGroup>
                     <SubmitButton type="submit" disabled={isSubmitting}>Sign in</SubmitButton>
                     <Link to={Endpoint.SIGN_UP}>Sign up</Link>

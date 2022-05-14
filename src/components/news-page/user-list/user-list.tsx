@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import NewsContentStyled from "../news-content/news-content.styled";
+import NewsContentStyled from "../../styled/news-content.styled";
 
 const UserList: FC = () => {
     return <NewsContentStyled>

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {lightOrange} from "../../styled/constants";
+import {lightOrange} from "./constants";
 
 const NewsContentStyled = styled.ul`
   width: 100%;

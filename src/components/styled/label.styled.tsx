@@ -1,6 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-const NewsTitle = styled.span`
+const Label = styled.label`
   font-family: 'Inter', sans-serif;
   font-style: normal;
   font-weight: 700;
@@ -10,4 +10,4 @@ const NewsTitle = styled.span`
   align-items: center;
 `;
 
-export default NewsTitle
+export default Label

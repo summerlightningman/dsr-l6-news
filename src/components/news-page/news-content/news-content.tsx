@@ -1,5 +1,5 @@
 import {FC, useEffect} from 'react';
-import NewsContentStyled from "./news-content.styled";
+import NewsContentStyled from "../../styled/news-content.styled";
 import NewsListItem from "../news-list-item/news-list-item";
 import NewsPaginator from "./news-paginator/news-paginator";
 import {useCookies} from "react-cookie";
@@ -21,7 +21,6 @@ const NewsContent: FC<NewsContentProps> = ({filterByTag}) => {
 
     return <NewsContentStyled>
         {
-
             list.map(
                 (post: NewsPost) =>
                     <NewsListItem

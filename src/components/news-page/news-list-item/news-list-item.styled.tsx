@@ -1,10 +1,11 @@
 import styled from 'styled-components';
-import NewsTitle from "./news-title.styled";
+
 import NewsDescription from "./news-description.styled";
 import NewsReadStatus from "./news-read-status.styled";
 import NewsTagList from "./news-tag-list.styled";
 import NewsPublicationStatus from "./news-publication-status.styled";
 import {darkPink} from "../../styled/constants";
+import ItemHeader from "../../styled/item-header.styled";
 
 const NewsListItemStyled = styled.li`
   width: 100%;
@@ -15,7 +16,7 @@ const NewsListItemStyled = styled.li`
   grid-template-columns: 7fr 1fr;
   border-bottom: 1px solid ${darkPink};
 
-  ${NewsTitle} {
+  ${ItemHeader} {
     grid-row: 1;
     grid-column: 1;
   }

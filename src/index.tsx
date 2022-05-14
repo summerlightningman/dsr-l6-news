@@ -18,6 +18,7 @@ import NotFound from "./components/not-found/not-found";
 import NewsContent from "./components/news-page/news-content/news-content";
 import TagList from "./components/news-page/tag-list/tag-list";
 import UserList from "./components/news-page/user-list/user-list";
+import NewPost from "./components/news-page/new-post/new-post";
 
 
 const queryClient = new QueryClient();
@@ -35,7 +36,7 @@ root.render(
                             <Route path={NavbarEndpoint.SUBSCRIBED} element={<NewsContent filterByTag={true}/>}/>
                             <Route path={NavbarEndpoint.TAG_LIST} element={<TagList/>}/>
                             <Route path={NavbarEndpoint.USER_LIST} element={<UserList/>}/>
-                            <Route path={NavbarEndpoint.NEW_POST} element={<NewsContent/>}/>
+                            <Route path={NavbarEndpoint.NEW_POST} element={<NewPost/>}/>
                         </Route>
                         <Route path={Endpoint.AUTH} element={<AuthPage/>}>
                             <Route index element={<SignInForm/>}/>

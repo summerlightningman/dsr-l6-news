@@ -1,17 +1,22 @@
-import {FC} from 'react';
-import {useQuery} from "react-query";
-import {getTagList} from "../../../http";
+import {FC, useEffect} from 'react';
 import {Tag} from '../news-page.types';
 import TagListItem from "./tag-list-item/tag-list-item";
-import NewsContentStyled from "../news-content/news-content.styled";
+import NewsContentStyled from "../../styled/news-content.styled";
+import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
+import fetchTagList from "../../../redux/slices/tag/fetch-tag-list";
 
 const TagList: FC = () => {
-    const {data: list} = useQuery('tagList', getTagList);
+    const {list: tagList} = useAppSelector(state => state.tag);
+    const dispatch = useAppDispatch();
 
-    if (list)
+    useEffect(() => {
+        dispatch(fetchTagList())
+    }, [dispatch]);
+
+    if (tagList)
         return <NewsContentStyled>
             {
-                list.map(
+                tagList.map(
                     (tag: Tag, idx: number) =>
                         <TagListItem
                             name={tag}

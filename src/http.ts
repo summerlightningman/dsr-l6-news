@@ -1,4 +1,4 @@
-import {NewsPost, Tag, UserInfo} from "./components/news-page/news-page.types";
+import {NewsDescription, NewsHeader, NewsPost, Tag, UserInfo} from "./components/news-page/news-page.types";
 import {Login, Password, Token} from "./components/auth-page/auth-page.types";
 
 
@@ -17,7 +17,8 @@ const BACKEND_URL = 'http://localhost:3000/';
 const corsHeaders = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': BACKEND_URL
-}
+};
+
 
 export const signIn = async (login: Login, password: Password) => fetch(BACKEND_URL + ApiEndpoint.LOGIN, {
     method: 'POST',
@@ -92,4 +93,21 @@ export const switchTagSubscription = async (token: Token, tag: Tag) =>
             const newTagList = user.tags.includes(tag) ? user.tags.filter(_ => _ !== tag) : [...user.tags, tag];
             return setUserData(token, {...user, tags: newTagList})
         });
+
+export interface AddNewsBody {
+    header: NewsHeader,
+        description: NewsDescription,
+    tags: Tag[],
+    state: string,
+    publicationDate: string
+}
+export const addNewsPost = async (token: Token, newsData: AddNewsBody) => fetch(BACKEND_URL + ApiEndpoint.NEWS, {
+    method: 'POST',
+    body: JSON.stringify(newsData),
+    headers: {
+        ...corsHeaders,
+        Accept: 'application/json',
+        token
+    }
+}).then(response => response.json())
 

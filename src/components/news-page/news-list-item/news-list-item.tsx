@@ -1,16 +1,16 @@
 import {FC, useState} from 'react';
 import NewsListItemStyled from "./news-list-item.styled";
-import NewsTitle from "./news-title.styled";
 import NewsReadStatus from "./news-read-status.styled";
 import NewsDescription from "./news-description.styled";
 import NewsTagList from "./news-tag-list.styled";
 import NewsPublicationStatus from "./news-publication-status.styled";
 import ShowMoreButton from "./show-more-button.styled";
 import {NewsListItemProps} from "./news-list-item.types";
+import ItemHeader from "../../styled/item-header.styled";
 
 const NewsListItem: FC<NewsListItemProps> = ({header, description, tags}) => {
     const [isFullText, setIsFullText] = useState(false);
-    const showMore = () => setIsFullText(true)
+    const showMore = () => setIsFullText(true);
     const showMoreBtn = <ShowMoreButton onClick={showMore}>Show more...</ShowMoreButton>;
 
     const maxTextLength = 75;
@@ -18,7 +18,7 @@ const NewsListItem: FC<NewsListItemProps> = ({header, description, tags}) => {
     const descriptionShort = isTextLong ? `${description.slice(0, 75)}...` : description;
 
     return <NewsListItemStyled>
-        <NewsTitle>{header}</NewsTitle>
+        <ItemHeader>{header}</ItemHeader>
         <NewsReadStatus>Unread</NewsReadStatus>
         <NewsDescription>{isFullText ? description : descriptionShort} {!isFullText && isTextLong && showMoreBtn}</NewsDescription>
         <NewsTagList>{tags.map(tag => `#${tag}`).join('   ')}</NewsTagList>

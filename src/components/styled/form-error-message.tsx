@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {darkPink, formControlWidth} from "./constants";
 
-const FormErrMsg = styled.span`
+const FormErrorMessage = styled.span`
   width: ${formControlWidth};
   display: inline-block;
   height: 24px;
@@ -10,4 +10,4 @@ const FormErrMsg = styled.span`
   color: ${darkPink};
 `;
 
-export default FormErrMsg
+export default FormErrorMessage

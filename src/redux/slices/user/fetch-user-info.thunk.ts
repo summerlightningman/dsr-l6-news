@@ -9,7 +9,7 @@ const fetchUserInfo = createAsyncThunk(
         try {
             return await getUserInfo(token)
         } catch (e) {
-            thunkAPI.rejectWithValue(UserError.FETCH_ERROR)
+            return thunkAPI.rejectWithValue(UserError.FETCH_ERROR)
         }
     });
 
