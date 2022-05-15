@@ -1,7 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {Tag} from '../../../components/news-page/news-page.types'
+
 import {TagError, TagState} from "./tag.types";
 import fetchTagList from "./fetch-tag-list";
+import {Tag, TagList} from "../../../types/news-post";
 
 const initialState: TagState = {
     list: [],
@@ -20,7 +21,7 @@ const tagSlice = createSlice({
         [fetchTagList.pending.type]: (state: TagState) => {
             state.isLoading = true
         },
-        [fetchTagList.fulfilled.type]: (state: TagState, action: PayloadAction<Tag[]>) => {
+        [fetchTagList.fulfilled.type]: (state: TagState, action: PayloadAction<TagList>) => {
             state.isLoading = false;
             state.list = action.payload;
         },

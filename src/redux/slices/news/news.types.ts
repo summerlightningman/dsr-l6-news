@@ -1,14 +1,15 @@
-import {NewsDescription, NewsHeader, NewsPost, Tag} from "../../../components/news-page/news-page.types";
 import {Token} from "../../../components/auth-page/auth-page.types";
 import {QueryParameters} from "../../../http";
+import {NewsDescription, NewsHeader, NewsPost, TagList} from "../../../types/news-post";
 
 export interface NewsState {
     list: NewsPost[],
+
     offset: number,
     limit: number,
     newPostHeader: NewsHeader,
     newPostDescription: NewsDescription,
-    newPostTags: Tag[],
+    newPostTags: TagList,
     errors?: {
         header?: string,
         description?: string,
@@ -26,6 +27,6 @@ export interface AddNewsPostPayload {
     token: Token,
     header: NewsHeader,
     description: NewsDescription,
-    tags: Tag[],
+    tags: TagList,
     isDraft: boolean
 }

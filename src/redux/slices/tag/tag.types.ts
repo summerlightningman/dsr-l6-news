@@ -1,11 +1,11 @@
-import {Tag} from '../../../components/news-page/news-page.types'
+import {TagList} from "../../../types/news-post";
 
 export enum TagError {
     LOAD_ERROR = 'LOAD_ERR'
 }
 
 export interface TagState {
-    list: Tag[],
+    list: TagList,
     isLoading: boolean,
     error?: TagError
 }

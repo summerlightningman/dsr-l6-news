@@ -1,5 +1,6 @@
-import {NewsDescription, NewsHeader, NewsPost, Tag, UserInfo} from "./components/news-page/news-page.types";
 import {Login, Password, Token} from "./components/auth-page/auth-page.types";
+import {NewsDescription, NewsHeader, NewsPost, Tag, TagList} from "./types/news-post";
+import {User} from "./types/user";
 
 
 enum ApiEndpoint {
@@ -44,14 +45,14 @@ export const signUp = async (login: Login, password: Password) => fetch(BACKEND_
     }
 });
 
-export const getUserInfo = async (token: Token): Promise<UserInfo> => fetch(BACKEND_URL + ApiEndpoint.USER_INFO, {
+export const getUser = async (token: Token): Promise<User> => fetch(BACKEND_URL + ApiEndpoint.USER_INFO, {
     method: 'GET',
     headers: {
         ...corsHeaders,
         Accept: 'application/json',
         token
     }
-}).then(response => response.json()).then(user => user.me as UserInfo);
+}).then(response => response.json()).then(user => user.me as User);
 
 export interface QueryParameters {
     offset: number,
@@ -76,10 +77,10 @@ export const getAllNews = async (token: Token, params: QueryParameters) => {
 export const getTagList = async () => fetch(BACKEND_URL + ApiEndpoint.TAG_LIST)
     .then(response => response.json());
 
-export const setUserData = async (token: Token, newUserInfo: UserInfo) =>
+export const setUserData = async (token: Token, newUser: User) =>
     fetch(BACKEND_URL + ApiEndpoint.USER_INFO, {
         method: 'POST',
-        body: JSON.stringify(newUserInfo),
+        body: JSON.stringify(newUser),
         headers: {
             ...corsHeaders,
             Accept: 'application/json',
@@ -88,7 +89,7 @@ export const setUserData = async (token: Token, newUserInfo: UserInfo) =>
     }).then(response => response.json());
 
 export const switchTagSubscription = async (token: Token, tag: Tag) =>
-    getUserInfo(token)
+    getUser(token)
         .then(user => {
             const newTagList = user.tags.includes(tag) ? user.tags.filter(_ => _ !== tag) : [...user.tags, tag];
             return setUserData(token, {...user, tags: newTagList})
@@ -96,11 +97,12 @@ export const switchTagSubscription = async (token: Token, tag: Tag) =>
 
 export interface AddNewsBody {
     header: NewsHeader,
-        description: NewsDescription,
-    tags: Tag[],
+    description: NewsDescription,
+    tags: TagList,
     state: string,
     publicationDate: string
 }
+
 export const addNewsPost = async (token: Token, newsData: AddNewsBody) => fetch(BACKEND_URL + ApiEndpoint.NEWS, {
     method: 'POST',
     body: JSON.stringify(newsData),

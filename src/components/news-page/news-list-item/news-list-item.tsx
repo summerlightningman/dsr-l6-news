@@ -1,4 +1,5 @@
 import {FC, useState} from 'react';
+import {Tag} from "../../../types/news-post";
 import NewsListItemStyled from "./news-list-item.styled";
 import NewsDescription from "./news-description.styled";
 import NewsTagList from "./news-tag-list.styled";
@@ -18,7 +19,11 @@ const NewsListItem: FC<NewsListItemProps> = ({header, description, tags}) => {
     const isTextLong = description.length > maxTextLength;
     const descriptionShort = isTextLong ? `${description.slice(0, maxTextLength)}...` : description;
 
-    return <NewsListItemStyled>
+    const read = () => {
+
+    }
+
+    return <NewsListItemStyled onMouseEnter={read}>
         <ItemHeader>{header}</ItemHeader>
         {/*<NewsReadStatus>Unread</NewsReadStatus>*/}
         {isTextLong ?
@@ -26,7 +31,7 @@ const NewsListItem: FC<NewsListItemProps> = ({header, description, tags}) => {
             :
             <NewsDescription>{isFullText ? description : descriptionShort}</NewsDescription>
         }
-        <NewsTagList>{tags.map(tag => `#${tag}`).join('   ')}</NewsTagList>
+        <NewsTagList>{tags.map((tag: Tag) => `#${tag}`).join('   ')}</NewsTagList>
         {/*<NewsPublicationStatus>Draft</NewsPublicationStatus>*/}
     </NewsListItemStyled>
 };

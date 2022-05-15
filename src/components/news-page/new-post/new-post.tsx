@@ -1,7 +1,5 @@
 import {ChangeEventHandler, FC, FormEventHandler, MouseEventHandler, useEffect} from 'react';
 
-import {Tag} from '../news-page.types';
-
 import Label from "../../styled/label.styled";
 
 import FormGroupStyled from "../../styled/form-group.styled";
@@ -23,6 +21,7 @@ import NewPostSubmit from "./new-post-submit";
 import Checkbox from "../../styled/checkbox.styled";
 import submitNewPost from "../../../redux/slices/news/submit-new-post";
 import {useCookies} from "react-cookie";
+import {Tag} from "../../../types/news-post";
 
 
 const NewPost: FC = () => {
@@ -54,7 +53,13 @@ const NewPost: FC = () => {
         e => dispatch(setIsDraft(e.currentTarget.checked));
     const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
         e.preventDefault();
-        dispatch(submitNewPost({token, header: newPostHeader, description: newPostDescription, tags: newPostTags, isDraft}))
+        dispatch(submitNewPost({
+            token,
+            header: newPostHeader,
+            description: newPostDescription,
+            tags: newPostTags,
+            isDraft
+        }))
     };
 
     // @ts-ignore
@@ -73,7 +78,7 @@ const NewPost: FC = () => {
             <Label htmlFor="tags">Tags</Label>
             <div style={{display: 'flex', flexDirection: 'row'}}>
                 {newPostTags.map(
-                    tag => <TagStyled>
+                    (tag: Tag) => <TagStyled>
                         #{tag}
                         <button onClick={removeTag(tag)}>X</button>
                     </TagStyled>)}

@@ -1,8 +1,9 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {NewsState} from "./news.types";
-import {NewsDescription, NewsHeader, NewsPost, Tag} from "../../../components/news-page/news-page.types";
+
 import fetchNewsList from "./fetch-news-list.thunk";
 import submitNewPost from "./submit-new-post";
+import {NewsDescription, NewsHeader, NewsPost, Tag} from "../../../types/news-post";
 
 const initialState: NewsState = {
     list: [],
@@ -36,15 +37,12 @@ export const newsSlice = createSlice({
         setNewPostDescription: (state: NewsState, action: PayloadAction<NewsDescription>) => {
             state.newPostDescription = action.payload
         },
-        setNewPostTags: (state: NewsState, action: PayloadAction<Tag[]>) => {
-            state.newPostTags = action.payload
-        },
         addNewPostTag: (state: NewsState, action: PayloadAction<Tag>) => {
             if (!state.newPostTags.includes(action.payload))
                 state.newPostTags = [...state.newPostTags, action.payload];
         },
         removeNewPostTag: (state: NewsState, action: PayloadAction<Tag>) => {
-            state.newPostTags = state.newPostTags.filter(tag => tag !== action.payload);
+            state.newPostTags = state.newPostTags.filter((tag: Tag) => tag !== action.payload);
         },
         setIsDraft: (state: NewsState, action: PayloadAction<boolean>) => {
             state.isDraft = action.payload;
@@ -69,7 +67,6 @@ export const {
     setLimit,
     setNewPostHeader,
     setNewPostDescription,
-    setNewPostTags,
     addNewPostTag,
     removeNewPostTag,
     setIsDraft

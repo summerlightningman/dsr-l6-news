@@ -13,15 +13,13 @@ const NewsPage: FC = () => {
     const {role} = useAppSelector(state => state.user);
     const [{token}] = useCookies(['token']);
 
-    const navbar = useMemo(() => getNavbarByRole(role), [role]);
-    const defaultPath = useMemo(() => getDefaultTabByRole(role), [role]);
-
-
     useEffect(() => {
         if (!token)
             navigate(Endpoint.AUTH);
     }, [token, navigate]);
 
+    const navbar = useMemo(() => getNavbarByRole(role), [role]);
+    const defaultPath = useMemo(() => getDefaultTabByRole(role), [role]);
 
     return <NewsPageStyled>
         <NewsBody>

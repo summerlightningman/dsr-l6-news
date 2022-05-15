@@ -1,8 +1,8 @@
-import {NewsDescription, NewsHeader, Tag} from "../news-page.types";
+import {NewsDescription, NewsHeader, TagList} from "../../../types/news-post";
 
 
 export interface NewsListItemProps {
     header: NewsHeader,
     description: NewsDescription,
-    tags: Tag[]
+    tags: TagList
 }

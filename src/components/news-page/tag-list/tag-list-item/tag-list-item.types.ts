@@ -1,4 +1,4 @@
-import {Tag} from '../../news-page.types';
+import {Tag} from "../../../../types/news-post";
 
 export interface TagListItemProps {
     name: Tag;

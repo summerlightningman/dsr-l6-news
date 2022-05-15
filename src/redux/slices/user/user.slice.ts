@@ -1,10 +1,12 @@
-import {Role, Tag} from '../../../components/news-page/news-page.types';
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import fetchUserInfo from "./fetch-user-info.thunk";
-import {UserError, UserState} from "./user.types";
+import fetchUser from "./fetch-user-info.thunk";
 import switchTagSub from "./switch-tag-subscription.thunk";
+import {UserError, UserState} from "./user.types";
+import {Role} from "../../../types/user";
+import {Tag} from "../../../types/news-post";
 
 const initialState: UserState = {
+    id: -1,
     nickname: '[unknown]',
     firstName: '[unknown]',
     tags: [],
@@ -17,11 +19,11 @@ const userSlice = createSlice({
     initialState,
     reducers: {},
     extraReducers: {
-        [fetchUserInfo.fulfilled.type]: (state: UserState, action: PayloadAction<UserState>) =>
+        [fetchUser.fulfilled.type]: (state: UserState, action: PayloadAction<UserState>) =>
             ({...action.payload}),
-        [fetchUserInfo.pending.type]: state =>
+        [fetchUser.pending.type]: state =>
             ({...state, nickname: 'Loading...', firstName: 'Loading...', lastName: 'Loading...'}),
-        [fetchUserInfo.rejected.type]: (state: UserState, action: PayloadAction<UserError>) =>
+        [fetchUser.rejected.type]: (state: UserState, action: PayloadAction<UserError>) =>
             ({...state, error: action.payload}),
         [switchTagSub.fulfilled.type]: (state: UserState, action: PayloadAction<Tag>) => {
             if (state.tags.includes(action.payload))

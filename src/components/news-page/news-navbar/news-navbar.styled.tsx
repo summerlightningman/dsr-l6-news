@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import UserInfoStyled from "../user-info/user-info.styled";
+import UserStyled from "../user-info/user-info.styled";
 
 
 const NewsNavbarStyled = styled.nav`
@@ -9,7 +9,7 @@ const NewsNavbarStyled = styled.nav`
   align-items: baseline;
 
 
-  ${UserInfoStyled} {
+  ${UserStyled} {
     margin-left: auto;
   }
 `;

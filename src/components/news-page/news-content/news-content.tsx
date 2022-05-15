@@ -3,11 +3,12 @@ import NewsContentStyled from "../../styled/news-content.styled";
 import NewsListItem from "../news-list-item/news-list-item";
 import NewsPaginator from "./news-paginator/news-paginator";
 import {useCookies} from "react-cookie";
-import {NewsPost} from "../news-page.types";
+
 import {NewsContentProps} from "./news-content.types";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import fetchNewsList from "../../../redux/slices/news/fetch-news-list.thunk";
 import {setLimit} from "../../../redux/slices/news/news.slice";
+import {NewsPost} from "../../../types/news-post";
 
 
 const NewsContent: FC<NewsContentProps> = ({filterByTag}) => {

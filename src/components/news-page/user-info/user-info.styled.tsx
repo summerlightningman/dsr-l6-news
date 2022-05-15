@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
-const UserInfoStyled = styled.div`
+const UserStyled = styled.div`
   background-color: #F37731;
   color: #FFD5AB;
-  
+
   height: 50px;
   border-radius: 25px 25px 0 0;
   padding: 0 20px;
@@ -21,4 +21,4 @@ const UserInfoStyled = styled.div`
   
 `;
 
-export default UserInfoStyled
+export default UserStyled

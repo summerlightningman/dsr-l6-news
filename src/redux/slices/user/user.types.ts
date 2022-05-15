@@ -1,12 +1,14 @@
-import {Tag, UserInfo} from '../../../components/news-page/news-page.types';
 import {Token} from "../../../components/auth-page/auth-page.types";
+
+import {Tag} from "../../../types/news-post";
+import {User} from "../../../types/user";
 
 export enum UserError {
     FETCH_ERROR = 'FETCH_ERR',
     SUBSCRIPTION_ERROR = 'SUB_ERR'
 }
 
-export interface UserState extends UserInfo {
+export interface UserState extends User {
     error?: UserError
 }
 

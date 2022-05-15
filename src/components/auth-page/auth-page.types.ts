@@ -1,6 +1,3 @@
-export type FirstName = string;
-export type LastName = string;
-export type NickName = string
 
 export type Token = string;
 

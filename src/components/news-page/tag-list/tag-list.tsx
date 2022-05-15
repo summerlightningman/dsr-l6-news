@@ -1,9 +1,10 @@
 import {FC, useEffect} from 'react';
-import {Tag} from '../news-page.types';
+
 import TagListItem from "./tag-list-item/tag-list-item";
 import NewsContentStyled from "../../styled/news-content.styled";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import fetchTagList from "../../../redux/slices/tag/fetch-tag-list";
+import {Tag} from "../../../types/news-post";
 
 const TagList: FC = () => {
     const {list: tagList} = useAppSelector(state => state.tag);

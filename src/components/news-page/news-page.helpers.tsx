@@ -1,9 +1,10 @@
 import React from "react";
-import {Role, UserInfo} from "./news-page.types";
 import NewsNavbarItemStyled from "./news-navbar/news-navbar-item.styled";
 import NavbarEndpoint from "./news-navbar/navbar-endpoint";
+import {Role, User} from "../../types/user";
 
-export const defaultUser: UserInfo = {
+export const defaultUser: User = {
+    id: -1,
     firstName: '',
     lastName: '',
     nickname: '',
