@@ -11,16 +11,19 @@ import ItemHeader from "../../styled/item-header.styled";
 const NewsListItem: FC<NewsListItemProps> = ({header, description, tags}) => {
     const [isFullText, setIsFullText] = useState(false);
     const showMore = () => setIsFullText(true);
+    const showLess = () => setIsFullText(false);
+
     const showMoreBtn = <ShowMoreButton onClick={showMore}>Show more...</ShowMoreButton>;
+    const showLessBtn = <ShowMoreButton onClick={showLess}>Hide</ShowMoreButton>
 
     const maxTextLength = 75;
     const isTextLong = description.length > maxTextLength;
-    const descriptionShort = isTextLong ? `${description.slice(0, 75)}...` : description;
+    const descriptionShort = isTextLong ? `${description.slice(0, maxTextLength)}...` : description;
 
     return <NewsListItemStyled>
         <ItemHeader>{header}</ItemHeader>
         <NewsReadStatus>Unread</NewsReadStatus>
-        <NewsDescription>{isFullText ? description : descriptionShort} {!isFullText && isTextLong && showMoreBtn}</NewsDescription>
+        <NewsDescription>{isFullText ? description : descriptionShort} {(!isFullText && isTextLong) ? showMoreBtn : (isTextLong && isFullText && showLessBtn)}</NewsDescription>
         <NewsTagList>{tags.map(tag => `#${tag}`).join('   ')}</NewsTagList>
         <NewsPublicationStatus>Draft</NewsPublicationStatus>
     </NewsListItemStyled>
