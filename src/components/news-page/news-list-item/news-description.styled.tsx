@@ -6,8 +6,7 @@ const NewsDescription = styled.p`
   font-weight: 400;
   font-size: 24px;
   line-height: 29px;
-  display: flex;
-  align-items: center;
+  
 `;
 
 export default NewsDescription
