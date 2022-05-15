@@ -8,15 +8,15 @@ import {decrementOffset, incrementOffset} from "../../../../redux/slices/news/ne
 
 const NewsPaginator: FC = () => {
     const dispatch = useAppDispatch();
-    const {offset, limit, list} = useAppSelector(state => state.news)
+    const {offset, limit, list} = useAppSelector(state => state.news);
 
     const onPrevPageClick = () => dispatch(decrementOffset());
     const onNextPageClick = () => dispatch(incrementOffset())
 
     return <NewsPaginatorStyled>
         <ButtonsPanel>
-            <PaginatorButton onClick={onPrevPageClick} disabled={offset !== 0}>&lt;&lt;  Prev</PaginatorButton>
-            <PaginatorButton onClick={onNextPageClick} disabled={list.length >= limit}>Next  &gt;&gt;</PaginatorButton>
+            <PaginatorButton onClick={onPrevPageClick} disabled={offset - limit !== 0}>&lt;&lt;  Prev</PaginatorButton>
+            <PaginatorButton onClick={onNextPageClick} disabled={list.length < limit}>Next  &gt;&gt;</PaginatorButton>
         </ButtonsPanel>
     </NewsPaginatorStyled>
 };

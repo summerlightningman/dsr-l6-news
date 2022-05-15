@@ -27,6 +27,9 @@ export const newsSlice = createSlice({
             else
                 state.offset -= state.limit;
         },
+        setLimit: (state: NewsState, action: PayloadAction<number>) => {
+            state.limit = action.payload;
+        },
         setNewPostHeader: (state: NewsState, action: PayloadAction<NewsHeader>) => {
             state.newPostHeader = action.payload;
         },
@@ -63,6 +66,7 @@ export const newsSlice = createSlice({
 export const {
     incrementOffset,
     decrementOffset,
+    setLimit,
     setNewPostHeader,
     setNewPostDescription,
     setNewPostTags,

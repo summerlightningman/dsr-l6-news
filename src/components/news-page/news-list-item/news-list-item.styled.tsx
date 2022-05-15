@@ -9,7 +9,7 @@ import ItemHeader from "../../styled/item-header.styled";
 
 const NewsListItemStyled = styled.li`
   width: 100%;
-
+  
   padding: 5px 15px 10px 30px;
   display: grid;
   grid-template-rows: 60px auto 45px;
