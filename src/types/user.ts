@@ -20,3 +20,5 @@ export interface User {
     role: Role,
     tags: TagList,
 }
+
+export type UserList = User[];

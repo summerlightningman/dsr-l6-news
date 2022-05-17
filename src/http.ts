@@ -10,7 +10,9 @@ enum ApiEndpoint {
     USER_INFO = 'user/me',
     ALL_NEWS = 'news/all',
     NEWS = 'news',
-    TAG_LIST = 'news/tags'
+    TAG_LIST = 'news/tags',
+    USER_LIST = 'admin/users',
+
 }
 
 const BACKEND_URL = 'http://localhost:3000/';
@@ -111,5 +113,14 @@ export const addNewsPost = async (token: Token, newsData: AddNewsBody) => fetch(
         Accept: 'application/json',
         token
     }
-}).then(response => response.json())
+}).then(response => response.json());
+
+export const getUserList = async (token: Token) => fetch(BACKEND_URL + ApiEndpoint.USER_LIST, {
+    method: 'GET',
+    headers: {
+        ...corsHeaders,
+        Accept: 'application/json',
+        token
+    }
+}).then(response => response.json());
 
