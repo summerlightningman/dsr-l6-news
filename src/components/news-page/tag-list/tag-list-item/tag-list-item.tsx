@@ -5,16 +5,15 @@ import TagListItemName from "./tag-list-item-name.styled";
 import {TagListItemProps} from "./tag-list-item.types";
 import SubscribeButton from "./subscribe-button.styled";
 import {useCookies} from "react-cookie";
-import {useAppDispatch, useAppSelector} from "../../../../redux/hooks";
-import switchTagSub from "../../../../redux/slices/user/switch-tag-subscription.thunk";
+import userService from "../../../../redux/services/user/user.service";
+
 
 const TagListItem: FC<TagListItemProps> = ({name: tag}) => {
-    const dispatch = useAppDispatch();
-    const {tags} = useAppSelector(state => state.user);
     const [{token}] = useCookies(['token']);
+    const {data: user} = userService.useGetUserInfoQuery(token);
 
     const switchSubscription = () => {
-        dispatch(switchTagSub({token, tag}));
+        // dispatch(switchTagSub({token, tag}));
     };
 
     const subscribeButton = <SubscribeButton isSubscribed={true} onClick={switchSubscription}>
@@ -27,7 +26,7 @@ const TagListItem: FC<TagListItemProps> = ({name: tag}) => {
 
     return <TagListItemStyled>
         <TagListItemName>{tag}</TagListItemName>
-        {tags.includes(tag) ? unsubscribeButton : subscribeButton}
+        {user?.tags.includes(tag) ? unsubscribeButton : subscribeButton}
     </TagListItemStyled>
 };
 
