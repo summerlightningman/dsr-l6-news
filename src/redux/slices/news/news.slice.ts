@@ -1,12 +1,10 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {NewsState} from "./news.types";
 
-import fetchNewsList from "./fetch-news-list.thunk";
 import submitNewPost from "./submit-new-post";
-import {NewsDescription, NewsHeader, NewsPost, Tag} from "../../../types/news-post";
+import {NewsDescription, NewsHeader, Tag} from "../../../types/news-post";
 
 const initialState: NewsState = {
-    list: [],
     offset: 0,
     limit: 5,
     newPostHeader: '',
@@ -49,9 +47,6 @@ export const newsSlice = createSlice({
         }
     },
     extraReducers: {
-        [fetchNewsList.fulfilled.type]: (state: NewsState, action: PayloadAction<NewsPost[]>) => {
-            state.list = action.payload;
-        },
         [submitNewPost.fulfilled.type]: (state: NewsState) => {
             state.newPostHeader = initialState.newPostHeader;
             state.newPostDescription = initialState.newPostDescription;

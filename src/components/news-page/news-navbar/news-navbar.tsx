@@ -13,12 +13,11 @@ const NewsNavbar: FC<NewsNavbarProps> = ({children, defaultPath}) => {
             navigate(defaultPath);
     }, [defaultPath, navigate, path]);
 
-    return <div>
-        <NewsNavbarStyled>
-            {children}
-            <UserInfo/>
-        </NewsNavbarStyled>
-    </div>
+    return <NewsNavbarStyled>
+        {children}
+        <UserInfo/>
+    </NewsNavbarStyled>
+
 };
 
 export default NewsNavbar;

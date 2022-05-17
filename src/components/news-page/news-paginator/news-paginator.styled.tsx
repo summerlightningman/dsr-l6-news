@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import {darkOrange} from "../../../styled/constants";
-import {newsBodyWidth} from "../../news-body.styled";
+import {darkOrange} from "../../styled/constants";
+import {newsBodyWidth} from "../news-body.styled";
 
 const paginatorHeight = '50px';
 

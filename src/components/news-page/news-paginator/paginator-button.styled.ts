@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import {lightOrange} from "../../../styled/constants";
+import {lightOrange} from "../../styled/constants";
 
 const PaginatorButton = styled.button`
   border: none;

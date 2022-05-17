@@ -1,9 +1,8 @@
 import {Token} from "../../../components/auth-page/auth-page.types";
 import {QueryParameters} from "../../../http";
-import {NewsDescription, NewsHeader, NewsPost, TagList} from "../../../types/news-post";
+import {NewsDescription, NewsHeader, TagList} from "../../../types/news-post";
 
 export interface NewsState {
-    list: NewsPost[],
 
     offset: number,
     limit: number,
