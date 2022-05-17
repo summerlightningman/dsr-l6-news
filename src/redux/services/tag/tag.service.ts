@@ -4,7 +4,9 @@ import {TagList} from "../../../types/news-post";
 
 const tagService = createApi({
     reducerPath: 'tagAPI',
-    baseQuery: fetchBaseQuery({baseUrl: BACKEND_URL}),
+    baseQuery: fetchBaseQuery(
+        {baseUrl: BACKEND_URL}
+    ),
     tagTypes: ['tagList'],
     endpoints: build => ({
         tagList: build.query<TagList, void>({

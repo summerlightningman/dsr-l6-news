@@ -7,6 +7,7 @@ import {GetUserInfoResponse, SubscribeToTagRequest, SubscribeToTagResponse} from
 const userService = createApi({
     reducerPath: 'userAPI',
     baseQuery: fetchBaseQuery({baseUrl: 'http://localhost:3000/user'}),
+    tagTypes: ['User', 'SubNewsList'],
     endpoints: build => ({
         getUserInfo: build.query<User, Token>({
             query: token => ({
@@ -17,18 +18,21 @@ const userService = createApi({
                     token
                 }
             }),
-            transformResponse: (resp: GetUserInfoResponse) => resp.me
+            transformResponse: (resp: GetUserInfoResponse) => resp.me,
+            providesTags: ['User']
         }),
         subscribeToTag: build.mutation<SubscribeToTagResponse, SubscribeToTagRequest>({
             query: req => ({
                 url: '/me',
+                method: 'PUT',
                 headers: {
                     ...corsHeaders,
                     Accept: 'application/json',
                     token: req.token
                 },
                 body: {...req.user}
-            })
+            }),
+            invalidatesTags: ['User', 'SubNewsList']
         })
     })
 });

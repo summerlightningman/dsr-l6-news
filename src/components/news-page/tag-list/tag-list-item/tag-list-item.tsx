@@ -11,9 +11,13 @@ import userService from "../../../../redux/services/user/user.service";
 const TagListItem: FC<TagListItemProps> = ({name: tag}) => {
     const [{token}] = useCookies(['token']);
     const {data: user} = userService.useGetUserInfoQuery(token);
+    const [switchTagSub] = userService.useSubscribeToTagMutation();
 
     const switchSubscription = () => {
-        // dispatch(switchTagSub({token, tag}));
+        if (!user?.tags)
+            return
+        const tags = user.tags.includes(tag) ? user.tags.filter(_ => _ !== tag) : [...user.tags, tag];
+        switchTagSub({token, user: {...user, tags}});
     };
 
     const subscribeButton = <SubscribeButton isSubscribed={true} onClick={switchSubscription}>
