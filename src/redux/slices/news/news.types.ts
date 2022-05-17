@@ -1,5 +1,4 @@
 import {Token} from "../../../components/auth-page/auth-page.types";
-import {QueryParameters} from "../../../http";
 import {NewsDescription, NewsHeader, TagList} from "../../../types/news-post";
 
 export interface NewsState {
@@ -15,11 +14,6 @@ export interface NewsState {
         tags?: string
     },
     isDraft: boolean
-}
-
-export interface FetchNewsListPayload extends QueryParameters {
-    token: Token,
-
 }
 
 export interface AddNewsPostPayload {

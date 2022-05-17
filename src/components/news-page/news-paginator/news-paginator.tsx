@@ -12,7 +12,7 @@ const NewsPaginator: FC = () => {
     const dispatch = useAppDispatch();
     const [{token}] = useCookies(['token']);
     const {offset, limit} = useAppSelector(state => state.news);
-    const {data: list} = newsService.useGetAllNewsListQuery({token, offset, limit});
+    const {data: list} = newsService.useGetAllNewsListQuery({token, params: {offset, limit}});
 
     const onPrevPageClick = () => dispatch(decrementOffset());
     const onNextPageClick = () => dispatch(incrementOffset());

@@ -1,4 +1,4 @@
-import {ChangeEventHandler, FC, FormEventHandler, MouseEventHandler, useEffect} from 'react';
+import {ChangeEventHandler, FC, FormEventHandler, MouseEventHandler} from 'react';
 
 import Label from "../../styled/label.styled";
 
@@ -8,7 +8,6 @@ import NewPostStyled from "./new-post.styled";
 import FormTextarea from "../../styled/form-textarea.styled";
 import {useAppDispatch, useAppSelector} from "../../../redux/hooks";
 import Select from "../../styled/select.styled";
-import fetchTagList from "../../../redux/slices/tag/fetch-tag-list";
 import {
     addNewPostTag,
     removeNewPostTag,
@@ -22,22 +21,19 @@ import Checkbox from "../../styled/checkbox.styled";
 import submitNewPost from "../../../redux/slices/news/submit-new-post";
 import {useCookies} from "react-cookie";
 import {Tag} from "../../../types/news-post";
+import tagService from "../../../redux/services/tag/tag.service";
 
 
 const NewPost: FC = () => {
     const [{token}] = useCookies(['token']);
-    const [{list: tagList}, {
+    const {data: tagList} = tagService.useTagListQuery();
+    const {
         newPostHeader,
         newPostDescription,
         newPostTags,
         isDraft
-    }] = useAppSelector(state => [state.tag, state.news]);
+    } = useAppSelector(state => state.news);
     const dispatch = useAppDispatch();
-
-    useEffect(() => {
-        if (!tagList.length)
-            dispatch(fetchTagList());
-    }, [dispatch, tagList]);
 
     const handleHeaderChange: ChangeEventHandler<HTMLInputElement> =
         e => dispatch(setNewPostHeader(e.currentTarget.value));
@@ -87,7 +83,7 @@ const NewPost: FC = () => {
                     <option value="">Select...</option>
                     {
                         tagList
-                            .filter(tag => !newPostTags.includes(tag))
+                            ?.filter(tag => !newPostTags.includes(tag))
                             .map(tag => <option value={tag} key={tag}>{tag}</option>)
                     }
                 </Select>

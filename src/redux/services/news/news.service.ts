@@ -1,35 +1,35 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {corsHeaders} from "../../../http";
 import {NewsPost} from "../../../types/news-post";
-import {GetAllNewsListParams, GetNewsListResponse, GetSubNewsListParams} from "./news.types";
+import {GetAllNewsListRequest, GetNewsListResponse, GetSubNewsListRequest} from "./news.types";
 
 const newsService = createApi({
     reducerPath: 'newsAPI',
     baseQuery: fetchBaseQuery({baseUrl: `http://localhost:3000/news`}),
     tagTypes: ['AllNewsList', 'SubNewsList'],
     endpoints: build => ({
-        getAllNewsList: build.query<NewsPost[], GetAllNewsListParams>({
-            query: args => ({
+        getAllNewsList: build.query<NewsPost[], GetAllNewsListRequest>({
+            query: req => ({
                 url: '/',
                 headers: {
                     ...corsHeaders,
                     Accept: 'application/json',
-                    token: args.token
+                    token: req.token
                 },
-                params: {offset: args.offset, limit: args.limit}
+                params: {...req.params}
             }),
             transformResponse: (resp: GetNewsListResponse) => resp.news.list,
             providesTags: ['AllNewsList']
         }),
-        getSubNewsList: build.query<NewsPost[], GetSubNewsListParams>({
-            query: args => ({
+        getSubNewsList: build.query<NewsPost[], GetSubNewsListRequest>({
+            query: req => ({
                 url: '/',
                 headers: {
                     ...corsHeaders,
                     Accept: 'application/json',
-                    token: args.token
+                    token: req.token
                 },
-                params: {offset: args.offset, limit: args.limit, tags: args.tags.join(',')}
+                params: {...req.params, tags: req.params.tags.join(',')}
             }),
             transformResponse: (resp: GetNewsListResponse) => resp.news.list,
             providesTags: ['SubNewsList']

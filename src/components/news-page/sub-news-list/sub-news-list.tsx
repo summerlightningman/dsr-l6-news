@@ -16,10 +16,12 @@ const AllNewsList: FC = () => {
     const {offset, limit} = useAppSelector(state => state.news);
     const {data: user} = userService.useGetUserInfoQuery(token);
     const {data: newsList, isError, isLoading, isSuccess} = newsService.useGetSubNewsListQuery({
-        offset,
-        limit,
         token,
-        tags: user?.tags || []
+        params: {
+            limit,
+            offset,
+            tags: user?.tags || []
+        }
     });
 
     const getContentByStatus = () => {

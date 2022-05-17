@@ -13,11 +13,7 @@ const AllNewsList: FC = () => {
     const contentRef = useRef<HTMLUListElement>(null);
 
     const {offset, limit} = useAppSelector(state => state.news);
-    const {data: newsList, status} = newsService.useGetAllNewsListQuery({
-        offset,
-        limit,
-        token
-    });
+    const {data: newsList, status} = newsService.useGetAllNewsListQuery({params: {offset, limit}, token});
 
     const getContentByStatus = () => {
         switch (status) {
