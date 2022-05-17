@@ -15,10 +15,11 @@ import AuthPage from "./components/auth-page/auth-page";
 import SignInForm from "./components/auth-page/sign-in-form/sign-in-form";
 import SignUpForm from "./components/auth-page/sign-up-form/sign-up-form";
 import NotFound from "./components/not-found/not-found";
-import NewsContent from "./components/news-page/news-content/news-content";
+import AllNewsList from "./components/news-page/all-news-list/all-news-list";
 import TagList from "./components/news-page/tag-list/tag-list";
 import UserList from "./components/news-page/user-list/user-list";
 import NewPost from "./components/news-page/new-post/new-post";
+import SubNewsList from "./components/news-page/sub-news-list/sub-news-list";
 
 
 const queryClient = new QueryClient();
@@ -32,8 +33,8 @@ root.render(
                 <Routes>
                     <Route path={Endpoint.ROOT} element={<App/>}>
                         <Route path={Endpoint.ROOT} element={<NewsPage/>}>
-                            <Route path={NavbarEndpoint.ALL} element={<NewsContent/>}/>
-                            <Route path={NavbarEndpoint.SUBSCRIBED} element={<NewsContent filterByTag={true}/>}/>
+                            <Route path={NavbarEndpoint.ALL} element={<AllNewsList/>}/>
+                            <Route path={NavbarEndpoint.SUBSCRIBED} element={<SubNewsList/>}/>
                             <Route path={NavbarEndpoint.TAG_LIST} element={<TagList/>}/>
                             <Route path={NavbarEndpoint.USER_LIST} element={<UserList/>}/>
                             <Route path={NavbarEndpoint.NEW_POST} element={<NewPost/>}/>

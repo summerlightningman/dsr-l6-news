@@ -15,9 +15,9 @@ enum ApiEndpoint {
 
 }
 
-const BACKEND_URL = 'http://localhost:3000/';
+export const BACKEND_URL = 'http://localhost:3000/';
 
-const corsHeaders = {
+export const corsHeaders = {
     'Content-Type': 'application/json',
     'Access-Control-Allow-Origin': BACKEND_URL
 };
