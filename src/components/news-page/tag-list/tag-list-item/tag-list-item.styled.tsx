@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import {darkPink} from "../../../styled/constants";
 
-const TagListItemStyled = styled.div`
+const TagListItemStyled = styled.li`
   width: 100%;
   height: 70px;
   display: flex;

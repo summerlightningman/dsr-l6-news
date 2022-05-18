@@ -1,6 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {BACKEND_URL, corsHeaders} from "../../../http";
 import {TagList} from "../../../types/news-post";
+import {AddTagRequest} from "./tag.types";
 
 const tagService = createApi({
     reducerPath: 'tagAPI',
@@ -18,6 +19,19 @@ const tagService = createApi({
                 }
             }),
             providesTags: ['tagList']
+        }),
+        addTag: build.mutation<TagList, AddTagRequest>({
+            query: (args) => ({
+                url: '/admin/news/tags',
+                method: 'PUT',
+                headers: {
+                    ...corsHeaders,
+                    Accept: 'application/json',
+                    token: args.token
+                },
+                body: args.tagList
+            }),
+            invalidatesTags: ['tagList']
         })
     })
 });

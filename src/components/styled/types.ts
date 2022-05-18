@@ -3,5 +3,7 @@ export interface FormInputProps {
 }
 
 export interface FormGroupProps {
-    width?: string
+    width?: string,
+    direction?: string;
+
 }

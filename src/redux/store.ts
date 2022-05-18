@@ -9,7 +9,6 @@ const store = configureStore({
     reducer: {
         news: newsSlice.reducer,
 
-
         [newsService.reducerPath]: newsService.reducer,
         [userService.reducerPath]: userService.reducer,
         [tagService.reducerPath]: tagService.reducer
