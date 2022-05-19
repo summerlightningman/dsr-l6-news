@@ -13,7 +13,7 @@ export enum Role {
 }
 
 export interface User {
-    id: UserID,
+    id?: UserID,
     firstName: FirstName,
     lastName: LastName,
     nickname: NickName

@@ -14,7 +14,7 @@ const TagList: FC = () => {
     const [{token}] = useCookies(['token']);
     const {data: user} = userService.useGetUserInfoQuery(token);
 
-    const getContentByStatus = () => {
+    const getContentByFetchStatus = () => {
         switch (status) {
             case 'pending':
                 return <h2>Loading...</h2>
@@ -36,7 +36,7 @@ const TagList: FC = () => {
 
 
     return <NewsContentStyled>
-        {getContentByStatus()}
+        {getContentByFetchStatus()}
     </NewsContentStyled>
 };
 
