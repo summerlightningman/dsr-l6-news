@@ -1,4 +1,4 @@
-import {NewsPost, TagList} from "../../../types/news-post";
+import {NewPostInfo, NewsPost, TagList} from "../../../types/news-post";
 import {RequiresToken} from "../../types";
 
 export interface GetNewsListResponse {
@@ -22,4 +22,9 @@ export interface GetSubNewsListParams extends GetAllNewsListParams {
 
 export interface GetSubNewsListRequest extends RequiresToken {
     params: GetSubNewsListParams
+}
+
+
+export interface AddNewPostRequest extends RequiresToken, NewPostInfo {
+
 }

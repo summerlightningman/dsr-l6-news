@@ -18,10 +18,11 @@ import {
 import TagStyled from "./tag.styled";
 import NewPostSubmit from "./new-post-submit";
 import Checkbox from "../../styled/checkbox.styled";
-import submitNewPost from "../../../redux/slices/news/submit-new-post";
+
 import {useCookies} from "react-cookie";
-import {Tag} from "../../../types/news-post";
+import {PubState, Tag} from "../../../types/news-post";
 import tagService from "../../../redux/services/tag/tag.service";
+import newsService from "../../../redux/services/news/news.service";
 
 
 const NewPost: FC = () => {
@@ -33,6 +34,7 @@ const NewPost: FC = () => {
         newPostTags,
         isDraft
     } = useAppSelector(state => state.news);
+    const [addNewPost] = newsService.useAddNewPostMutation();
     const dispatch = useAppDispatch();
 
     const handleHeaderChange: ChangeEventHandler<HTMLInputElement> =
@@ -49,13 +51,14 @@ const NewPost: FC = () => {
         e => dispatch(setIsDraft(e.currentTarget.checked));
     const handleSubmit: FormEventHandler<HTMLFormElement> = e => {
         e.preventDefault();
-        dispatch(submitNewPost({
+        return addNewPost({
             token,
             header: newPostHeader,
             description: newPostDescription,
             tags: newPostTags,
-            isDraft
-        }))
+            publicationDate: new Date().toUTCString(),
+            state: isDraft ? PubState.DRAFT : PubState.PUBLISHED
+        });
     };
 
     // @ts-ignore

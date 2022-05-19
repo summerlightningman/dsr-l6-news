@@ -1,7 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {NewsState} from "./news.types";
 
-import submitNewPost from "./submit-new-post";
 import {NewsDescription, NewsHeader, Tag} from "../../../types/news-post";
 
 const initialState: NewsState = {
@@ -46,14 +45,6 @@ export const newsSlice = createSlice({
             state.isDraft = action.payload;
         }
     },
-    extraReducers: {
-        [submitNewPost.fulfilled.type]: (state: NewsState) => {
-            state.newPostHeader = initialState.newPostHeader;
-            state.newPostDescription = initialState.newPostDescription;
-            state.newPostTags = initialState.newPostTags;
-            state.isDraft = initialState.isDraft;
-        }
-    }
 });
 
 export const {

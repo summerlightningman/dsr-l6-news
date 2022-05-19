@@ -21,14 +21,14 @@ const userListService = createApi({
             providesTags: ['UserList']
         }),
         setUserRole: build.mutation<void, SetUserRoleRequest>({
-            query: args => ({
-                url: `/user/${args.id}`,
+            query: req => ({
+                url: `/user/${req.id}`,
                 headers: {
                     ...corsHeaders,
                     Accept: 'application/json',
-                    token: args.token
+                    token: req.token
                 },
-                body: {role: args.role},
+                body: {role: req.role},
                 method: 'PUT'
             }),
             invalidatesTags: ['UserList']

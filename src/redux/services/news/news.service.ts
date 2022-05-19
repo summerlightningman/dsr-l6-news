@@ -1,7 +1,7 @@
 import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {corsHeaders} from "../../../http";
 import {NewsPost} from "../../../types/news-post";
-import {GetAllNewsListRequest, GetNewsListResponse, GetSubNewsListRequest} from "./news.types";
+import {AddNewPostRequest, GetAllNewsListRequest, GetNewsListResponse, GetSubNewsListRequest} from "./news.types";
 
 const newsService = createApi({
     reducerPath: 'newsAPI',
@@ -33,6 +33,19 @@ const newsService = createApi({
             }),
             transformResponse: (resp: GetNewsListResponse) => resp.news.list,
             providesTags: ['SubNewsList']
+        }),
+        addNewPost: build.mutation<void, AddNewPostRequest>({
+            query: req => ({
+                url: '/',
+                headers: {
+                    ...corsHeaders,
+                    Accept: 'application/json',
+                    token: req.token
+                },
+                method: 'POST',
+                body: {...req},
+            }),
+            invalidatesTags: ['AllNewsList', 'SubNewsList']
         })
     })
 
