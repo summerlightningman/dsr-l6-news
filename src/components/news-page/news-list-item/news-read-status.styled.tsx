@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 const NewsReadStatus = styled.span`
   width: 110px;
-  font-family: 'Inter', sans-serif;
+  font-family: ${props => props.theme.font.inter};
   font-style: italic;
   font-weight: 400;
   font-size: 32px;
@@ -11,7 +11,7 @@ const NewsReadStatus = styled.span`
   align-items: center;
   text-align: right;
 
-  color: #828282;
+  color: ${props => props.theme.color.gray};
 `;
 
 export default NewsReadStatus

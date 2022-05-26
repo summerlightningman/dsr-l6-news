@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 // @ts-ignore
 import img from '../../assets/news-blured.png';
-import {darkPink, lightOrange} from "../styled/constants";
 
 const NewsPageStyled = styled.main`
   width: 100vw;
@@ -20,8 +19,8 @@ const NewsPageStyled = styled.main`
   justify-content: center;
 
   .active {
-    background-color: ${lightOrange};
-    color: ${darkPink};
+    background-color: ${props => props.theme.color.lightOrange};
+    color: ${props => props.theme.color.darkPink};
   }
 `;
 

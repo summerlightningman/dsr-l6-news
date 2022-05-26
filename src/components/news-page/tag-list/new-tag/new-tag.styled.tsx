@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import {lightOrange} from "../../../styled/constants";
 
 const NewTagStyled = styled.div`
   position: fixed;
   bottom: 0;
 
-  background: ${lightOrange};
+  background: ${props => props.theme.color.lightOrange};
   max-width: inherit;
 
   width: inherit;

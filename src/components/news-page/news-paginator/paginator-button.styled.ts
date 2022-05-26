@@ -1,11 +1,10 @@
 import styled from 'styled-components';
-import {lightOrange} from "../../styled/constants";
 
 const PaginatorButton = styled.button`
   border: none;
   background: none;
-  color: ${lightOrange};
-  border-bottom: 2px solid ${lightOrange};
+  color: ${props => props.theme.color.lightOrange};
+  border-bottom: 2px solid ${props => props.theme.color.lightOrange};
   font-size: 32px;
   display: flex;
   justify-content: center;
@@ -16,8 +15,8 @@ const PaginatorButton = styled.button`
   }
 
   :disabled {
-    color: #828282;
-    border-bottom-color: #828282;
+    color: ${props => props.theme.color.gray};
+    border-bottom-color: ${props => props.theme.color.gray};
   }
 `;
 

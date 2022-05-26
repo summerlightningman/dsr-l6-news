@@ -1,16 +1,15 @@
 import styled from 'styled-components';
 import {NavLink} from "react-router-dom";
-import {darkOrange, lightOrange} from "../../styled/constants";
 
 const NewsNavbarItemStyled = styled(NavLink)`
 
-  background-color: ${darkOrange};
-  color: ${lightOrange};
+  background-color: ${props => props.theme.color.darkOrange};
+  color: ${props => props.theme.color.lightOrange};
 
   width: 160px;
   height: 50px;
 
-  font-family: 'Inter', sans-serif;
+  font-family: ${props => props.theme.font.inter};
   font-style: normal;
   font-weight: 400;
   font-size: 24px;

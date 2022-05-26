@@ -8,7 +8,7 @@ const UserStyled = styled.div`
   border-radius: 25px 25px 0 0;
   padding: 0 20px;
 
-  font-family: 'Inter', sans-serif;
+  font-family: ${props => props.theme.font.inter};
   font-style: normal;
   font-weight: 400;
   font-size: 24px;
@@ -18,7 +18,7 @@ const UserStyled = styled.div`
   justify-content: center;
   text-align: center;
   text-decoration: none;
-  
+
 `;
 
 export default UserStyled

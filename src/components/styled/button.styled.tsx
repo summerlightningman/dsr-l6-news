@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {darkOrange} from "./constants";
 
 const Button = styled.button`
   width: 220px;
@@ -7,7 +6,7 @@ const Button = styled.button`
   border-radius: 12px;
   border: none;
 
-  font-family: 'Inter', sans-serif;
+  font-family: ${props => props.theme.font.inter};
   font-style: normal;
   font-weight: 400;
   font-size: 32px;
@@ -16,7 +15,7 @@ const Button = styled.button`
   align-items: center;
   justify-content: center;
 
-  background-color: ${darkOrange};
+  background-color: ${props => props.theme.color.darkOrange};
   color: white;
 
   cursor: pointer;

@@ -26,16 +26,6 @@ const SignUpForm: FC = () => {
             navigate(Endpoint.ROOT)
     }, [cookies.token, navigate]);
 
-    // const initialVales: FormFields = {firstName: '', secondName: '', lastName: '', phone: '0 - 000 - 000 - 00 - 00', showFirstName: true, showLastname: true, showPhone: true};
-    // const validate = (values: FormFields) => {
-    //     const errors: Partial<FormFields> = {};
-    //     if (!values.firstName)
-    //         errors.firstName = 'First name cannot be empty'
-    //     if (!values.secondName)
-    //         errors.secondName = 'Second name cannot be empty'
-    //     return errors
-    // };
-
     const initialVales: FormFields = {login: '', password: ''};
     const validate = (values: FormFields) => {
         const errors: Partial<FormFields> = {};
@@ -74,26 +64,6 @@ const SignUpForm: FC = () => {
               }) =>
                 <Form onSubmit={handleSubmit}>
                     <FormHeader>SIGN UP</FormHeader>
-                    {/*<FormGroup>*/}
-                    {/*    <FormInput type="text" name="firstName" value={values.firstName} onChange={handleChange}*/}
-                    {/*               onBlur={handleBlur} placeholder="First name"/>*/}
-                    {/*    <FormErrMsg>{errors.firstName && touched.firstName && errors.firstName}</FormErrMsg>*/}
-                    {/*</FormGroup>*/}
-                    {/*<FormGroup>*/}
-                    {/*    <FormInput type="text" name="secondName" value={values.secondName} onChange={handleChange}*/}
-                    {/*               onBlur={handleBlur} placeholder="Second name"/>*/}
-                    {/*    <FormErrMsg>{errors.secondName && touched.secondName && errors.secondName}</FormErrMsg>*/}
-                    {/*</FormGroup>*/}
-                    {/*<FormGroup>*/}
-                    {/*    <FormInput type="text" name="lastName" value={values.lastName} onChange={handleChange}*/}
-                    {/*               onBlur={handleBlur} placeholder="Last name"/>*/}
-                    {/*    <FormErrMsg>{errors.lastName && touched.lastName && errors.lastName}</FormErrMsg>*/}
-                    {/*</FormGroup>*/}
-                    {/*<FormGroup>*/}
-                    {/*    <FormInput type="tel" name="phone" value={values.phone} onChange={handleChange}*/}
-                    {/*               onBlur={handleBlur} placeholder="Phone number" />*/}
-                    {/*    <FormErrMsg>{errors.phone && touched.phone && errors.phone}</FormErrMsg>*/}
-                    {/*</FormGroup>*/}
                     <FormGroup>
                         <FormInput type="text" name="login" value={values.login} onChange={handleChange}
                                    onBlur={handleBlur} placeholder="Login"/>

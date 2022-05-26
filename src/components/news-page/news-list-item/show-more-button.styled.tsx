@@ -3,9 +3,9 @@ import styled from 'styled-components';
 const ShowMoreButton = styled.button`
   border: none;
   background: none;
-  font-family: 'Inter', sans-serif;
+  font-family: ${props => props.theme.font.inter};
   font-style: italic;
-  color: #828282;
+  color: ${props => props.theme.color.gray};
   padding-left: 10px;
   font-size: 24px;
   line-height: 39px;

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import {darkPink} from "../../../styled/constants";
 
 const TagListItemStyled = styled.li`
   width: 100%;
@@ -9,7 +8,7 @@ const TagListItemStyled = styled.li`
   justify-content: space-between;
   align-items: center;
 
-  border-bottom: 1px solid ${darkPink};
+  border-bottom: 1px solid ${props => props.theme.color.darkPink};
   padding: 0 15px;
 `;
 

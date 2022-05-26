@@ -1,16 +1,12 @@
 import styled from 'styled-components';
-import {darkOrange} from "../../styled/constants";
-import {newsBodyWidth} from "../news-body.styled";
-
-const paginatorHeight = '50px';
 
 const NewsPaginatorStyled = styled.footer`
   position: absolute;
   bottom: 0;
-  height: ${paginatorHeight};
+  height: 50px;
 
-  background: ${darkOrange};
-  width: ${newsBodyWidth};
+  background: ${props => props.theme.color.darkOrange};
+  width: inherit;
   display: flex;
   flex-direction: row;
   justify-content: center;

@@ -1,15 +1,14 @@
 import styled from 'styled-components';
-import {formControlColor} from "./constants";
 
 const SubmitButton = styled.button`
-  background: ${formControlColor};
-  
+  background: ${props => props.theme.color.formControlColor};
+
   width: 300px;
   height: 75px;
   display: flex;
   justify-content: center;
   align-items: center;
-  
+
   font-family: "Franklin Gothic Heavy", sans-serif;
   font-style: normal;
   font-weight: 400;
